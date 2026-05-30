@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 // ─── Data ────────────────────────────────────────────────────────
 const MENU_ITEMS = [
   {
-    src: '/images/chicken_shawarma_mascot.png',
+    src: '/images/chicken_shawarma_mascot.webp',
     bg: '#D4440A',      // deeper orange-red (brand)
     panel: '#E85F28',
     name: 'Classic Chicken',
@@ -13,7 +13,7 @@ const MENU_ITEMS = [
     message: "Hi! I'd like to order the Classic Chicken Shawarma (KES 280)"
   },
   {
-    src: '/images/beef_shawarma_mascot.png',
+    src: '/images/beef_shawarma_mascot.webp',
     bg: '#1A6B2F',
     panel: '#2E8B44',
     name: 'Beef Shawarma',
@@ -22,7 +22,7 @@ const MENU_ITEMS = [
     message: "Hi! I'd like to order the Beef Shawarma (KES 320)"
   },
   {
-    src: '/images/mixed_shawarma_mascot.png',
+    src: '/images/mixed_shawarma_mascot.webp',
     bg: '#8B1A5C',
     panel: '#B0266F',
     name: 'Mixed Shawarma',
@@ -31,7 +31,7 @@ const MENU_ITEMS = [
     message: "Hi! I'd like to order the Mixed Shawarma (KES 350)"
   },
   {
-    src: '/images/spicy_shawarma_mascot.png',
+    src: '/images/spicy_shawarma_mascot.webp',
     bg: '#1A4A8B',
     panel: '#2260B5',
     name: 'Spicy Harissa',

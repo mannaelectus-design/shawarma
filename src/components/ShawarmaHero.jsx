@@ -1,58 +1,64 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 // ─── Data: 5 Shawarma House Branded Figurines ────────────────────
 const FIGURINES = [
   {
-    src: '/images/figurine-1.png',
+    id: 'hero-1',
+    src: '/images/figurine-1.webp',
     bg: '#FF6B35',
     panel: '#FF8C61',
-    name: 'The Chef',
+    name: 'Classic Chicken Shawarma',
     tag: 'Most Popular',
     price: 'KES 280',
+    priceValue: 280,
     desc: 'Classic chicken shawarma — marinated overnight, flame-grilled, wrapped fresh.',
-    message: "Hi! I'd like to order the Classic Chicken Shawarma (KES 280)",
   },
   {
-    src: '/images/figurine-2.png',
+    id: 'hero-2',
+    src: '/images/figurine-2.webp',
     bg: '#C1272D',
     panel: '#D8454A',
-    name: 'The Hostess',
+    name: 'Premium Beef Shawarma',
     tag: "Chef's Pick",
     price: 'KES 320',
+    priceValue: 320,
     desc: 'Premium beef shawarma with house-made garlic sauce and pickled turnips.',
-    message: "Hi! I'd like to order the Beef Shawarma (KES 320)",
   },
   {
-    src: '/images/figurine-3.png',
+    id: 'hero-3',
+    src: '/images/figurine-3.webp',
     bg: '#FF6B35',
     panel: '#FF8C61',
-    name: 'The Grill Master',
+    name: 'Mixed Shawarma',
     tag: 'Fan Favourite',
     price: 'KES 350',
+    priceValue: 350,
     desc: 'Mixed shawarma sliced fresh off the spit — chicken & beef, double the flavour.',
-    message: "Hi! I'd like to order the Mixed Shawarma (KES 350)",
   },
   {
-    src: '/images/figurine-4.png',
+    id: 'hero-4',
+    src: '/images/figurine-4.webp',
     bg: '#C1272D',
     panel: '#D8454A',
-    name: 'The Combo Queen',
+    name: 'Combo Platter',
     tag: 'Best Value',
     price: 'KES 550',
+    priceValue: 550,
     desc: 'Full combo platter: shawarma, golden fries, fresh salad & mint lemonade.',
-    message: "Hi! I'd like to order the Combo Platter (KES 550)",
   },
   {
-    src: '/images/figurine-5.png',
+    id: 'hero-5',
+    src: '/images/figurine-5.webp',
     bg: '#4CAF50',
     panel: '#6BCB77',
-    name: 'The Delivery Guy',
+    name: 'Spicy Harissa Shawarma',
     tag: 'New',
     price: 'KES 300',
+    priceValue: 300,
     desc: 'Hot & fresh to your door in 30 mins. Our delivery riders never keep you waiting.',
-    message: "Hi! I'd like to order the Spicy Harissa Shawarma (KES 300)",
   },
 ];
 
@@ -68,15 +74,15 @@ const ITEM_TRANSITION = `transform ${EASE}, filter ${EASE}, opacity ${EASE}, lef
 export default function ShawarmaHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const isAnimatingRef = useRef(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const { addToCart } = useCart();
   const timerRef = useRef(null);
 
-  // Preload all figurine images on mount
+  // Preload only the first figurine on mount to optimize LCP, others naturally load later
   useEffect(() => {
-    FIGURINES.forEach(({ src }) => {
-      const img = new Image();
-      img.src = src;
-    });
+    const img = new Image();
+    img.src = FIGURINES[0].src;
   }, []);
 
   // Responsive breakpoint
@@ -86,33 +92,43 @@ export default function ShawarmaHero() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // Auto-rotate every 5 seconds
-  useEffect(() => {
-    timerRef.current = setInterval(() => navigate('next'), 5000);
-    return () => clearInterval(timerRef.current);
-  }, [activeIndex]);
-
   const navigate = useCallback((dir) => {
-    if (isAnimating) return;
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
     setIsAnimating(true);
     setActiveIndex(prev =>
       dir === 'next' ? (prev + 1) % COUNT : (prev + COUNT - 1) % COUNT
     );
-    setTimeout(() => setIsAnimating(false), 650);
-  }, [isAnimating]);
+    setTimeout(() => {
+      isAnimatingRef.current = false;
+      setIsAnimating(false);
+    }, 650);
+  }, []);
+
+  // Auto-rotate every 5 seconds
+  useEffect(() => {
+    timerRef.current = setInterval(() => navigate('next'), 5000);
+    return () => clearInterval(timerRef.current);
+  }, [navigate]);
 
   const handleNav = useCallback((dir) => {
     clearInterval(timerRef.current);
     navigate(dir);
+    timerRef.current = setInterval(() => navigate('next'), 5000);
   }, [navigate]);
 
   const jumpTo = useCallback((i) => {
-    if (isAnimating || i === activeIndex) return;
+    if (isAnimatingRef.current || i === activeIndex) return;
     clearInterval(timerRef.current);
+    isAnimatingRef.current = true;
     setIsAnimating(true);
     setActiveIndex(i);
-    setTimeout(() => setIsAnimating(false), 650);
-  }, [isAnimating, activeIndex]);
+    setTimeout(() => {
+      isAnimatingRef.current = false;
+      setIsAnimating(false);
+    }, 650);
+    timerRef.current = setInterval(() => navigate('next'), 5000);
+  }, [activeIndex, navigate]);
 
   // ─── Role calculations for 5 items ────────────────────────────
   const center  = activeIndex;
@@ -167,7 +183,7 @@ export default function ShawarmaHero() {
       left: isMobile ? '35%' : '40%',
       x: '-50%',
       scale: 0.95,
-      filter: 'blur(4px) brightness(0.6)',
+      filter: isMobile ? 'blur(2px) brightness(0.6)' : 'blur(4px) brightness(0.6)',
       opacity: 0.5,
       zIndex: 5,
       height: isMobile ? '13%' : '22%',
@@ -178,7 +194,7 @@ export default function ShawarmaHero() {
       left: isMobile ? '65%' : '60%',
       x: '-50%',
       scale: 0.9,
-      filter: 'blur(5px) brightness(0.5)',
+      filter: isMobile ? 'blur(3px) brightness(0.5)' : 'blur(5px) brightness(0.5)',
       opacity: 0.3,
       zIndex: 3,
       height: isMobile ? '11%' : '19%',
@@ -188,7 +204,6 @@ export default function ShawarmaHero() {
   };
 
   const active = FIGURINES[activeIndex];
-  const orderUrl = `https://wa.me/254700000000?text=${encodeURIComponent(active.message)}`;
 
   return (
     <div
@@ -342,6 +357,7 @@ export default function ShawarmaHero() {
                     src={fig.src}
                     alt={fig.name}
                     draggable={false}
+                    loading={isActive ? "eager" : "lazy"}
                     fetchPriority={isActive ? 'high' : 'auto'}
                     style={{
                       width: '100%', height: '100%',
@@ -365,7 +381,9 @@ export default function ShawarmaHero() {
         maxWidth: 340,
       }}>
         {/* Active figurine name */}
-        <p style={{
+        <p 
+          aria-live="polite"
+          style={{
           fontWeight: 700, textTransform: 'uppercase',
           letterSpacing: '0.02em',
           fontSize: isMobile ? '1rem' : '22px',
@@ -396,7 +414,8 @@ export default function ShawarmaHero() {
                 width: i === activeIndex ? 24 : 8,
                 height: 8, borderRadius: 4,
                 background: i === activeIndex ? 'white' : 'rgba(255,255,255,0.4)',
-                border: 'none', cursor: 'pointer', padding: 0,
+                border: '10px solid transparent', cursor: 'pointer', padding: 0,
+                backgroundClip: 'padding-box',
                 transition: `all ${EASE}`,
               }}
               aria-label={`Go to figurine ${i + 1}`}
@@ -425,19 +444,27 @@ export default function ShawarmaHero() {
       {/* ── 6. Bottom-right: Order CTA ── */}
       <div style={{
         position: 'absolute',
-        bottom: isMobile ? 24 : 80,
-        right: isMobile ? 16 : 40,
+        bottom: isMobile ? 32 : 64,
+        right: isMobile ? 24 : 64,
         zIndex: 60,
       }}>
-        <a
-          href={orderUrl}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          onClick={() => {
+            addToCart({
+              id: active.id,
+              name: active.name,
+              price: active.priceValue,
+              image: active.src
+            });
+          }}
           style={{
-            display: 'flex', alignItems: 'center', gap: 8,
+            display: 'flex', alignItems: 'center', gap: 12,
             fontFamily: "'Anton', sans-serif",
-            fontSize: 'clamp(20px, 4vw, 56px)',
+            fontSize: 'clamp(24px, 4vw, 42px)',
             fontWeight: 400,
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
             color: 'white', opacity: 0.95,
             letterSpacing: '-0.02em',
             lineHeight: 1,
@@ -449,17 +476,16 @@ export default function ShawarmaHero() {
           onMouseLeave={e => e.currentTarget.style.opacity = '0.95'}
         >
           ORDER NOW
-          <ArrowRight
-            style={{ width: isMobile ? 20 : 32, height: isMobile ? 20 : 32 }}
+          <ShoppingBag
+            style={{ width: isMobile ? 24 : 32, height: isMobile ? 24 : 32 }}
             strokeWidth={2.25}
           />
-        </a>
+        </button>
       </div>
 
     </div>
   );
 }
-
 // ─── Circular nav button with hover interaction ──────────────────
 function NavButton({ onClick, label, isMobile, children }) {
   const [hovered, setHovered] = useState(false);

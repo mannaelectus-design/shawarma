@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Flame, Droplets, MapPin, CheckCircle } from 'lucide-react';
+import ProgressiveImage from '../components/ProgressiveImage';
 
 export default function About() {
   useEffect(() => {
@@ -23,8 +24,8 @@ export default function About() {
           <p style={{ color: 'var(--cream-dim)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', marginBottom: 48 }}>
             Born from a passion for authentic Middle Eastern flavors and Kenyan hospitality.
           </p>
-          <div style={{ width: '100%', height: '400px', borderRadius: '16px', overflow: 'hidden', marginBottom: '64px' }}>
-            <img src="https://loremflickr.com/1600/900/shawarma,restaurant?lock=101" alt="Chef grilling meat" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ position: 'relative', width: '100%', height: '400px', borderRadius: '16px', overflow: 'hidden', marginBottom: '64px' }}>
+            <ProgressiveImage src="/images/our_story_kitchen.webp" alt="Chef grilling meat" style={{ width: '100%', height: '100%' }} objectPosition="center 70%" />
           </div>
         </motion.div>
 

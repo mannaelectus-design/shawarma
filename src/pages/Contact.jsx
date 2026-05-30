@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Clock, MessageCircle, Send } from 'lucide-react';
+import ProgressiveImage from '../components/ProgressiveImage';
+import { useCart } from '../context/CartContext';
 
 export default function Contact() {
   const [formStatus, setFormStatus] = useState('');
+  const { generateWhatsAppLink, cartCount } = useCart();
 
   useEffect(() => {
     document.title = "Contact & Order | Shawarma House Kenya";
@@ -32,8 +35,8 @@ export default function Contact() {
           <p style={{ color: 'var(--cream-dim)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', marginBottom: 48 }}>
             Ready to order? Use WhatsApp for the fastest response, call us, or drop an inquiry below.
           </p>
-          <div style={{ width: '100%', height: '300px', borderRadius: '16px', overflow: 'hidden', marginBottom: '64px' }}>
-            <img src="https://loremflickr.com/1600/900/restaurant,table?lock=102" alt="Restaurant spread" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '16px', overflow: 'hidden', marginBottom: '64px' }}>
+            <ProgressiveImage src="/images/shawarma_plate.webp" alt="Restaurant spread" style={{ width: '100%', height: '100%' }} />
           </div>
         </motion.div>
 
@@ -43,8 +46,8 @@ export default function Contact() {
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
             
             <div style={{ display: 'flex', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
-              <a href="https://wa.me/254700000000" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center' }}>
-                <MessageCircle size={20} /> Order via WhatsApp
+              <a href={generateWhatsAppLink()} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center' }}>
+                <MessageCircle size={20} /> {cartCount > 0 ? `Checkout Cart (${cartCount})` : 'Order via WhatsApp'}
               </a>
               <a href="tel:+254700000000" className="btn btn-outline" style={{ flex: 1, justifyContent: 'center' }}>
                 <Phone size={20} /> Call Us Directly

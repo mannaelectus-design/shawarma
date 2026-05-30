@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { menuItems, menuCategories } from '../data/menu';
 import MenuCard from '../components/MenuCard';
 import SEO from '../components/SEO';
+import { FlipReveal, FlipRevealItem } from '../components/FlipReveal';
 
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -18,11 +19,7 @@ export default function Menu() {
     }
   }, [location.search]);
 
-  const filteredMenu = useMemo(() => {
-    return activeCategory === 'all' 
-      ? menuItems 
-      : menuItems.filter(item => item.category === activeCategory);
-  }, [activeCategory]);
+
 
   return (
     <div className="page-wrapper" style={{ paddingTop: '100px', paddingBottom: '80px' }}>
@@ -66,11 +63,17 @@ export default function Menu() {
         </div>
 
         {/* Menu Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
-          {filteredMenu.map((item, i) => (
-            <MenuCard key={item.id} item={item} index={i} />
+        <FlipReveal 
+          activeCategory={activeCategory} 
+          className="menu-grid" 
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}
+        >
+          {menuItems.map((item, i) => (
+            <FlipRevealItem key={item.id} flipKey={item.category} style={{ height: '100%' }}>
+              <MenuCard item={item} index={i} style={{ height: '100%' }} />
+            </FlipRevealItem>
           ))}
-        </div>
+        </FlipReveal>
 
         {/* CTA */}
         <div style={{ marginTop: 64, textAlign: 'center', background: 'rgba(212,68,10,0.1)', padding: 48, borderRadius: 16 }}>

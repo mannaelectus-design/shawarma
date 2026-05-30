@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { MessageCircle, UtensilsCrossed, MapPin, Star, Leaf, Zap, ShieldCheck, Truck } from 'lucide-react';
+import { CircularTestimonials } from '../components/CircularTestimonials';
+import ProgressiveImage from '../components/ProgressiveImage';
 import { featuredItems, menuItems } from '../data/menu';
 import MenuCard from '../components/MenuCard';
 import ShawarmaHero from '../components/ShawarmaHero';
@@ -19,6 +21,13 @@ export default function Home() {
   useEffect(() => {
     document.title = "Shawarma, Chips & Nyama Choma Done Fresh | Shawarma House";
   }, []);
+
+  const parallaxRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: parallaxRef,
+    offset: ["start end", "end start"]
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   const testimonials = [
     { text: "Best shawarma in town. The meat is so tender and the sauce is incredible.", author: "David K." },
@@ -76,7 +85,7 @@ export default function Home() {
 
           <div className="grid-3" style={{ marginBottom: 40 }}>
             {featuredItems.map((item, i) => (
-              <MenuCard key={item.id} item={item} index={i} />
+              <MenuCard key={item.id} item={item} index={i} useMask={true} />
             ))}
           </div>
 
@@ -90,53 +99,67 @@ export default function Home() {
       </section>
 
       {/* ══════════════════ WHY CHOOSE US ══════════════════ */}
-      <section className="section">
-        <div className="container">
+      <section ref={parallaxRef} className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <motion.div style={{ position: 'absolute', top: '-20%', bottom: '-20%', left: 0, right: 0, y: backgroundY }}>
+          <ProgressiveImage
+            src="/images/why_different_flames.webp"
+            alt="Chef carving shawarma from a vertical spit with flames in the background"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </motion.div>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(16, 8, 5, 0.95) 0%, rgba(16, 8, 5, 0.7) 50%, rgba(16, 8, 5, 0.2) 100%)', zIndex: 1 }} />
+        
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <motion.div
-            className="section-header text-center"
+            className="section-header"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2, margin: "0px 0px -50px 0px" }}
             variants={stagger}
+            style={{ textAlign: 'left', marginBottom: 48 }}
           >
             <motion.span className="overline" variants={fadeUp}>Why We're Different</motion.span>
             <motion.h2 className="section-title" variants={fadeUp}>
               Real Food. <span className="text-orange">Real Flavour.</span>
             </motion.h2>
-            <div className="divider divider-center" />
-            <p style={{ color: 'var(--cream-dim)', maxWidth: 600, margin: '0 auto', fontSize: '1.1rem' }}>
+            <div className="divider" style={{ marginLeft: 0 }} />
+            <p style={{ color: 'var(--cream-dim)', maxWidth: 600, fontSize: '1.1rem' }}>
               We don't cut corners. From our overnight marinades to our blazing grills, everything is designed for maximum flavor.
             </p>
           </motion.div>
 
-          <div className="why-grid">
-            {[
-              {
-                icon: <Leaf size={26} />, title: 'Fresh Ingredients',
-                desc: 'Crisp veggies, daily-baked pita, and premium cuts of meat.',
-              },
-              {
-                icon: <UtensilsCrossed size={26} />, title: 'Flame-Grilled',
-                desc: 'Authentic roasting methods for that unbeatable smoky taste.',
-              },
-              {
-                icon: <Truck size={26} />, title: 'Fast Delivery',
-                desc: "Hot and fresh to your door, exactly when you crave it.",
-              },
-            ].map((card, i) => (
-              <motion.div
-                key={card.title}
-                className="why-card"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-              >
-                <div className="why-icon">{card.icon}</div>
-                <h3 className="why-title">{card.title}</h3>
-                <p className="why-desc">{card.desc}</p>
-              </motion.div>
-            ))}
+          <div style={{ maxWidth: '600px' }}>
+            <div className="why-grid" style={{ gridTemplateColumns: '1fr', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              {[
+                {
+                  icon: <Leaf size={26} />, title: 'Fresh Ingredients',
+                  desc: 'Crisp veggies, daily-baked pita, and premium cuts of meat.',
+                },
+                {
+                  icon: <UtensilsCrossed size={26} />, title: 'Flame-Grilled',
+                  desc: 'Authentic roasting methods for that unbeatable smoky taste.',
+                },
+                {
+                  icon: <Truck size={26} />, title: 'Fast Delivery',
+                  desc: "Hot and fresh to your door, exactly when you crave it.",
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}
+                >
+                  <div className="why-icon" style={{ flexShrink: 0, marginBottom: 0 }}>{card.icon}</div>
+                  <div>
+                    <h3 className="why-title" style={{ color: 'var(--white)' }}>{card.title}</h3>
+                    <p className="why-desc" style={{ color: 'rgba(255,255,255,0.8)' }}>{card.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -165,17 +188,42 @@ export default function Home() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} style={{ textAlign: 'center', marginBottom: 48 }}>
             <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: 'clamp(40px, 6vw, 64px)', color: 'var(--charcoal)', textTransform: 'uppercase', lineHeight: 1.1 }}>WHAT THEY SAY</h2>
           </motion.div>
-          <div className="grid-3">
-            {testimonials.map((test, i) => (
-              <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} style={{ background: 'var(--cream)', padding: 32, borderRadius: 16 }}>
-                <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
-                  {[1,2,3,4,5].map(star => <Star key={star} size={16} fill="var(--orange)" color="var(--orange)" />)}
-                </div>
-                <p style={{ color: 'var(--charcoal)', fontSize: '1.1rem', fontStyle: 'italic', marginBottom: 20, lineHeight: 1.5 }}>"{test.text}"</p>
-                <p style={{ color: 'var(--charcoal)', fontWeight: 700 }}>— {test.author}</p>
-              </motion.div>
-            ))}
-          </div>
+          <CircularTestimonials
+            testimonials={[
+              {
+                quote: "Honestly, this is the best shawarma I've had in Nairobi. The meat is so tender, and that house-made garlic sauce hits the spot perfectly every single time!",
+                name: "Kevin M.",
+                designation: "Local Foodie",
+                src: "/images/testimonials/test_1.png",
+              },
+              {
+                quote: "The vibe here is just unmatched! My friends and I come here every Friday night. Amazing flame-grilled platters, great music, and the staff always treat us like family.",
+                name: "Amina J.",
+                designation: "Weekend Regular",
+                src: "/images/testimonials/test_2.png",
+              },
+              {
+                quote: "I've been eating roasted meat for decades, and the nyama choma wrap here is something special. Proper seasoning, hot off the grill, and no shortcuts. Fantastic.",
+                name: "Mzee Omondi",
+                designation: "Neighborhood Legend",
+                src: "/images/testimonials/test_3.png",
+              },
+            ]}
+            autoplay={true}
+            colors={{
+              name: "var(--charcoal)",
+              designation: "var(--charcoal)",
+              testimony: "var(--charcoal)",
+              arrowBackground: "var(--charcoal)",
+              arrowForeground: "var(--cream)",
+              arrowHoverBackground: "var(--cream)",
+            }}
+            fontSizes={{
+              name: "28px",
+              designation: "18px",
+              quote: "22px",
+            }}
+          />
         </div>
       </section>
 

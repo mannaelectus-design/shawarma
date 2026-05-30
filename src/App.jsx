@@ -1,8 +1,11 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import { CartProvider } from './context/CartContext';
+import CartDrawer from './components/CartDrawer';
 import './marquee.css';
 
 const Menu = lazy(() => import('./pages/Menu'));
@@ -18,16 +21,26 @@ function ScrollToTop() {
 
 function AppLayout() {
   return (
-    <>
-      <ScrollToTop />
-      <Navbar />
-      <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--orange)' }}>Loading...</div>}>
+    <CartProvider>
+      <LazyMotion features={domAnimation}>
+        <ScrollToTop />
+        <Navbar />
+        <CartDrawer />
+        <Suspense fallback={
+        <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--orange)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+            <div style={{ width: 40, height: 40, border: '3px solid var(--orange)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+            <span style={{ fontFamily: "'Anton', sans-serif", fontSize: '1.2rem', letterSpacing: '0.05em' }}>LOADING...</span>
+          </div>
+        </div>
+      }>
         <main>
           <Outlet />
         </main>
       </Suspense>
       <Footer />
-    </>
+      </LazyMotion>
+    </CartProvider>
   );
 }
 
@@ -48,3 +61,4 @@ const router = createBrowserRouter([
 export default function App() {
   return <RouterProvider router={router} />;
 }
+

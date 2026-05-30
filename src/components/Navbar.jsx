@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X, ShoppingBag, Flame } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { cartCount, toggleCart } = useCart();
 
   useEffect(() => {
     const onScroll = () => {
@@ -54,14 +56,33 @@ export default function Navbar() {
           </ul>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <a
-              href="https://wa.me/254700000000"
-              target="_blank" rel="noreferrer"
+            <button
+              onClick={toggleCart}
               className="btn btn-primary btn-sm"
-              style={{ display: 'flex', gap: 6 }}
+              style={{ display: 'flex', gap: 6, position: 'relative' }}
             >
-              <ShoppingBag size={15} /> Order Now
-            </a>
+              <ShoppingBag size={15} /> Cart
+              {cartCount > 0 && (
+                <span style={{
+                  position: 'absolute',
+                  top: -6,
+                  right: -6,
+                  background: 'white',
+                  color: 'var(--orange)',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  borderRadius: '50%',
+                  width: 18,
+                  height: 18,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                }}>
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <button
               className="nav-mobile-btn"
               onClick={() => setMobileOpen(o => !o)}
@@ -86,14 +107,13 @@ export default function Navbar() {
             {l.label}
           </NavLink>
         ))}
-        <a
-          href="https://wa.me/254700000000"
-          target="_blank" rel="noreferrer"
-          style={{ padding: '16px clamp(16px,4vw,48px)', color: '#25D366', fontWeight: 700 }}
-          onClick={() => setMobileOpen(false)}
+        <button
+          onClick={() => { setMobileOpen(false); toggleCart(); }}
+          className="btn btn-primary"
+          style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: 8, marginTop: '1rem', position: 'relative' }}
         >
-          📱 Order on WhatsApp
-        </a>
+          <ShoppingBag size={18} /> View Cart ({cartCount})
+        </button>
       </div>
     </>
   );

@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
-
+import { MessageCircle, Plus } from 'lucide-react';
 import { memo } from 'react';
+import ProgressiveImage from './ProgressiveImage';
+import ImageMask from './ImageMask';
+import { useCart } from '../context/CartContext';
 
 const badgeMap = {
   popular: { label: 'Popular', cls: 'badge-popular' },
@@ -12,26 +14,33 @@ const badgeMap = {
   hot: { label: 'Hot 🌶️', cls: 'badge-hot' },
 };
 
-const MenuCard = memo(function MenuCard({ item, index = 0 }) {
+const MenuCard = memo(function MenuCard({ item, index = 0, style = {}, useMask = false }) {
   const badge = item.badge ? badgeMap[item.badge] : null;
+  const { addToCart } = useCart();
 
   const handleOrder = () => {
-    const msg = encodeURIComponent(`Hi! I'd like to order: ${item.name} (KES ${item.price.toLocaleString()})`);
-    window.open(`https://wa.me/254700000000?text=${msg}`, '_blank');
+    addToCart(item);
   };
 
   return (
     <motion.div
       className="menu-card"
+      style={style}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.4, 0, 0.2, 1] }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
     >
       <div style={{ position: 'relative' }}>
         <div className="menu-card-image-placeholder" style={{ padding: 0, overflow: 'hidden' }}>
           {item.image ? (
-            <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+            useMask ? (
+              <ImageMask style={{ width: '100%', height: '100%' }}>
+                <ProgressiveImage src={item.image} alt={item.name} style={{ width: '100%', height: '100%' }} />
+              </ImageMask>
+            ) : (
+              <ProgressiveImage src={item.image} alt={item.name} style={{ width: '100%', height: '100%' }} />
+            )
           ) : (
             <span>{item.emoji || '🍽️'}</span>
           )}
@@ -54,8 +63,8 @@ const MenuCard = memo(function MenuCard({ item, index = 0 }) {
               </span>
             )}
           </div>
-          <button className="menu-card-order" onClick={handleOrder} aria-label={`Order ${item.name}`}>
-            <MessageCircle size={16} />
+          <button className="menu-card-order" onClick={handleOrder} aria-label={`Add ${item.name} to cart`}>
+            <Plus size={18} />
           </button>
         </div>
       </div>

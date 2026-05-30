@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Tag, Clock, CheckCircle } from 'lucide-react';
+import { GalleryCard } from '../components/GalleryCard';
 
 const galleryImages = [
-  { id: 1, src: '/images/hero_shawarma.png', alt: 'Fresh Shawarma Wrap', span: 'col-span-2 row-span-2' },
-  { id: 2, src: '/images/shawarma_spit.png', alt: 'Roasting Shawarma Spit', span: 'col-span-1 row-span-1' },
-  { id: 3, src: '/images/hummus_falafel.png', alt: 'Hummus & Falafel', span: 'col-span-1 row-span-1' },
-  { id: 4, src: '/images/shawarma_plate.png', alt: 'Shawarma Platter', span: 'col-span-2 row-span-1' },
+  { id: 1, src: '/images/hero_features.webp', heading: 'Our Process', description: 'Fresh ingredients prepped daily for the ultimate shawarma experience.' },
+  { id: 2, src: '/images/menu/menu_chicken.webp', heading: 'The Classic', description: 'Flame-grilled chicken wrapped in warm, toasted flatbread.' },
+  { id: 3, src: '/images/menu/grill_goat.webp', heading: 'Nyama Choma', description: 'Authentic Kenyan style grilled goat, tender and flavorful.' },
+  { id: 4, src: '/images/menu/plate_mixed.webp', heading: 'Mixed Platter', description: 'A massive feast perfect for sharing with friends and family.' },
 ];
 
 const offers = [
@@ -88,41 +89,18 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div>
+        <div style={{ marginTop: 48 }}>
           <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: '2rem', color: 'var(--cream)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
             <CheckCircle color="var(--orange)" /> FRESH FROM THE GRILL
           </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gridAutoRows: '250px',
-            gap: 16
-          }}>
-            {galleryImages.map((img, i) => (
-              <motion.div
+          <div className="mx-auto grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+            {galleryImages.map((img) => (
+              <GalleryCard 
                 key={img.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                style={{
-                  borderRadius: 16,
-                  overflow: 'hidden',
-                  background: 'rgba(255,255,255,0.05)',
-                }}
-                className={img.span} // Note: This requires specific tailwind-like grid classes, but standard CSS grid auto-fit handles it gracefully as fallback
-              >
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
-                  width={800}
-                  height={600}
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                />
-              </motion.div>
+                heading={img.heading}
+                description={img.description}
+                imgSrc={img.src}
+              />
             ))}
           </div>
         </div>
