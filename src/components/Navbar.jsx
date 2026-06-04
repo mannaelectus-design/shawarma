@@ -20,6 +20,7 @@ export default function Navbar() {
   const links = [
     { to: '/', label: 'Home' },
     { to: '/menu', label: 'Menu' },
+    { to: '/catering', label: 'Catering' },
     { to: '/about', label: 'Our Story' },
     { to: '/gallery', label: 'Gallery & Offers' },
     { to: '/contact', label: 'Contact' },

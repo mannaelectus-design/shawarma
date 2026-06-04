@@ -12,6 +12,8 @@ const Menu = lazy(() => import('./pages/Menu'));
 const About = lazy(() => import('./pages/About'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Catering = lazy(() => import('./pages/Catering'));
+const PosterMaker = lazy(() => import('./pages/PosterMaker'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -54,6 +56,8 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "gallery", element: <Gallery /> },
       { path: "contact", element: <Contact /> },
+      { path: "catering", element: <Catering /> },
+      { path: "poster-maker", element: <PosterMaker /> },
     ],
   },
 ]);
