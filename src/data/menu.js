@@ -10,9 +10,9 @@ export const menuCategories = [
 
 export const menuItems = [
   // SHAWARMA WRAPS
-  { id: 1, category: 'wraps', name: 'Classic Chicken Shawarma', desc: 'Tender marinated chicken, garlic sauce, pickles & veggies in fresh pita bread', price: 280, badge: 'popular', image: '/images/menu/menu_1_chicken_wrap.png' },
-  { id: 2, category: 'wraps', name: 'Beef Shawarma', desc: 'Slow-roasted beef, tahini sauce, tomatoes & onions wrapped to perfection', price: 320, badge: null, image: '/images/menu/menu_2_beef_wrap.png' },
-  { id: 3, category: 'wraps', name: 'Mixed Shawarma', desc: 'Best of both worlds — chicken & beef with our signature house sauce', price: 350, badge: 'chef', image: '/images/menu/menu_3_mixed_wrap.png' },
+  { id: 1, category: 'wraps', name: 'Classic Chicken Shawarma', desc: 'Tender marinated chicken, garlic sauce, pickles & veggies in fresh pita bread', price: 280, badge: 'popular', image: '/images/menu/menu_1_chicken_wrap.webp' },
+  { id: 2, category: 'wraps', name: 'Beef Shawarma', desc: 'Slow-roasted beef, tahini sauce, tomatoes & onions wrapped to perfection', price: 320, badge: null, image: '/images/menu/menu_2_beef_wrap.webp' },
+  { id: 3, category: 'wraps', name: 'Mixed Shawarma', desc: 'Best of both worlds — chicken & beef with our signature house sauce', price: 350, badge: 'chef', image: '/images/menu/menu_3_mixed_wrap.webp' },
   { id: 4, category: 'wraps', name: 'Spicy Harissa Chicken', desc: 'Fiery harissa-marinated chicken with jalapeños and cooling yoghurt', price: 300, badge: 'hot', image: 'https://loremflickr.com/800/800/shawarma,spicy?lock=4' },
 
   // SHAWARMA PLATES

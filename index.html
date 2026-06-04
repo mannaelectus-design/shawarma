@@ -12,11 +12,32 @@
     <title>Shawarma House Kenya | Fresh. Hot. Unstoppable.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="preload" as="style" fetchpriority="high" />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+    <style>
+      /* Minimal App Shell CSS for instant FCP */
+      body, html { margin: 0; padding: 0; background-color: #f6efe8; font-family: system-ui, -apple-system, sans-serif; }
+      #app-shell { position: fixed; top: 0; left: 0; right: 0; height: 80px; background: rgba(255, 255, 255, 0.9); border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; z-index: 9999; }
+      .shell-logo { font-size: 1.5rem; font-weight: 800; color: #b91c1c; }
+      .shell-nav { display: flex; gap: 2rem; }
+      .shell-item { width: 60px; height: 20px; background: #e5e7eb; border-radius: 4px; }
+      @media (max-width: 768px) { .shell-nav { display: none; } }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="app-shell">
+        <div class="shell-logo">SHAWARMA</div>
+        <div class="shell-nav">
+          <div class="shell-item"></div>
+          <div class="shell-item"></div>
+          <div class="shell-item"></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

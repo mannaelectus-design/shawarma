@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 // ─── Data: 5 Shawarma House Branded Figurines ────────────────────
 const FIGURINES = [
   {
-    src: '/images/figurine-1.png',
+    src: '/images/figurine-1.webp',
     bg: '#FF6B35',
     panel: '#FF8C61',
     name: 'The Chef',
@@ -15,7 +15,7 @@ const FIGURINES = [
     message: "Hi! I'd like to order the Classic Chicken Shawarma (KES 280)",
   },
   {
-    src: '/images/figurine-2.png',
+    src: '/images/figurine-2.webp',
     bg: '#C1272D',
     panel: '#D8454A',
     name: 'The Hostess',
@@ -25,7 +25,7 @@ const FIGURINES = [
     message: "Hi! I'd like to order the Beef Shawarma (KES 320)",
   },
   {
-    src: '/images/figurine-3.png',
+    src: '/images/figurine-3.webp',
     bg: '#FF6B35',
     panel: '#FF8C61',
     name: 'The Grill Master',
@@ -35,7 +35,7 @@ const FIGURINES = [
     message: "Hi! I'd like to order the Mixed Shawarma (KES 350)",
   },
   {
-    src: '/images/figurine-4.png',
+    src: '/images/figurine-4.webp',
     bg: '#C1272D',
     panel: '#D8454A',
     name: 'The Combo Queen',
@@ -45,7 +45,7 @@ const FIGURINES = [
     message: "Hi! I'd like to order the Combo Platter (KES 550)",
   },
   {
-    src: '/images/figurine-5.png',
+    src: '/images/figurine-5.webp',
     bg: '#4CAF50',
     panel: '#6BCB77',
     name: 'The Delivery Guy',

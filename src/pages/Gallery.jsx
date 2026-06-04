@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { Tag, Clock, CheckCircle } from 'lucide-react';
 
 const galleryImages = [
-  { id: 1, src: '/images/hero_shawarma.png', alt: 'Fresh Shawarma Wrap', span: 'col-span-2 row-span-2' },
-  { id: 2, src: '/images/shawarma_spit.png', alt: 'Roasting Shawarma Spit', span: 'col-span-1 row-span-1' },
-  { id: 3, src: '/images/hummus_falafel.png', alt: 'Hummus & Falafel', span: 'col-span-1 row-span-1' },
-  { id: 4, src: '/images/shawarma_plate.png', alt: 'Shawarma Platter', span: 'col-span-2 row-span-1' },
+  { id: 1, src: '/images/hero_shawarma.webp', alt: 'Fresh Shawarma Wrap', span: 'col-span-2 row-span-2' },
+  { id: 2, src: '/images/shawarma_spit.webp', alt: 'Roasting Shawarma Spit', span: 'col-span-1 row-span-1' },
+  { id: 3, src: '/images/hummus_falafel.webp', alt: 'Hummus & Falafel', span: 'col-span-1 row-span-1' },
+  { id: 4, src: '/images/shawarma_plate.webp', alt: 'Shawarma Platter', span: 'col-span-2 row-span-1' },
 ];
 
 const offers = [
