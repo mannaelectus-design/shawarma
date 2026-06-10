@@ -259,14 +259,15 @@ export default function ShawarmaHero() {
       {/* ── NEW LPO HERO COPY & CTAs ── */}
       <div style={{
         position: 'absolute',
-        top: isMobile ? 130 : 160,
+        top: isMobile ? 130 : 120,
         left: isMobile ? 16 : 32,
+        right: isMobile ? 16 : 'auto',
         zIndex: 60,
-        maxWidth: 580,
+        maxWidth: isMobile ? '100%' : 580,
       }}>
         <h1 style={{
           fontFamily: "'Anton', sans-serif",
-          fontSize: 'clamp(44px, 6vw, 90px)',
+          fontSize: 'clamp(36px, 8vw, 90px)',
           color: 'white',
           lineHeight: 1.05,
           letterSpacing: '0.01em',
@@ -281,7 +282,7 @@ export default function ShawarmaHero() {
 
       {/* ── 3. Top-left Brand ── */}
       <div style={{
-        position: 'absolute', top: isMobile ? 90 : 110, left: isMobile ? 16 : 32,
+        position: 'absolute', top: isMobile ? 86 : 90, left: isMobile ? 16 : 32,
         zIndex: 60,
         fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.18em',
         textTransform: 'uppercase', color: 'white', opacity: 0.9,
@@ -291,7 +292,7 @@ export default function ShawarmaHero() {
 
       {/* ── Top-right: Active figurine tag + price ── */}
       <div style={{
-        position: 'absolute', top: isMobile ? 86 : 106, right: isMobile ? 16 : 32,
+        position: 'absolute', top: isMobile ? 86 : 90, right: isMobile ? 16 : 32,
         zIndex: 60,
         display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4,
       }}>
@@ -372,13 +373,18 @@ export default function ShawarmaHero() {
         })}
       </div>
 
-      {/* ── 5. Bottom-left: Label + Desc + Dots + Nav ── */}
+      {/* ── 5. Right-side: Label + Desc ── */}
       <div style={{
         position: 'absolute',
-        bottom: isMobile ? 24 : 80,
-        left: isMobile ? 16 : 96,
+        top: '50%',
+        right: isMobile ? 16 : 64,
+        transform: 'translateY(-50%)',
         zIndex: 60,
-        maxWidth: 340,
+        maxWidth: isMobile ? 240 : 340,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        textAlign: 'right',
       }}>
         {/* Active figurine name */}
         <p 
@@ -386,7 +392,7 @@ export default function ShawarmaHero() {
           style={{
           fontWeight: 700, textTransform: 'uppercase',
           letterSpacing: '0.02em',
-          fontSize: isMobile ? '1rem' : '22px',
+          fontSize: isMobile ? '1.1rem' : '26px',
           color: 'white', opacity: 0.95,
           marginBottom: isMobile ? 8 : 12,
           transition: `opacity ${EASE}`,
@@ -397,15 +403,23 @@ export default function ShawarmaHero() {
         {/* Description — hidden on mobile */}
         {!isMobile && (
           <p style={{
-            fontSize: '0.875rem', color: 'white', opacity: 0.85,
-            lineHeight: 1.6, marginBottom: 20,
+            fontSize: '0.95rem', color: 'white', opacity: 0.85,
+            lineHeight: 1.6,
           }}>
             {active.desc}
           </p>
         )}
+      </div>
 
+      {/* ── 6. Bottom-left: Dots + Nav ── */}
+      <div style={{
+        position: 'absolute',
+        bottom: isMobile ? 24 : 32,
+        left: isMobile ? 16 : 96,
+        zIndex: 60,
+      }}>
         {/* Dot indicators */}
-        <div style={{ display: 'flex', gap: 6, marginBottom: isMobile ? 14 : 20 }}>
+        <div style={{ display: 'flex', gap: 6, marginBottom: isMobile ? 14 : 20, alignItems: 'center' }}>
           {FIGURINES.map((_, i) => (
             <button
               key={i}
@@ -414,8 +428,7 @@ export default function ShawarmaHero() {
                 width: i === activeIndex ? 24 : 8,
                 height: 8, borderRadius: 4,
                 background: i === activeIndex ? 'white' : 'rgba(255,255,255,0.4)',
-                border: '10px solid transparent', cursor: 'pointer', padding: 0,
-                backgroundClip: 'padding-box',
+                border: 'none', cursor: 'pointer', padding: 0,
                 transition: `all ${EASE}`,
               }}
               aria-label={`Go to figurine ${i + 1}`}
@@ -444,8 +457,8 @@ export default function ShawarmaHero() {
       {/* ── 6. Bottom-right: Order CTA ── */}
       <div style={{
         position: 'absolute',
-        bottom: isMobile ? 32 : 64,
-        right: isMobile ? 24 : 64,
+        bottom: isMobile ? 24 : 32,
+        right: isMobile ? 16 : 64,
         zIndex: 60,
       }}>
         <button
