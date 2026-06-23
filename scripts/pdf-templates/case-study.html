@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study - Digital Transformation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600;800&family=Reem+Kufi:wght@400;600;700&display=swap');
+
+    :root {
+      --charcoal: #1A1A1A;
+      --orange: #FF6B35;
+      --gold: #FFB347;
+      --cream: #F5E6D3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--charcoal);
+      color: var(--cream);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      background-color: var(--charcoal);
+      overflow: hidden;
+      padding: 20mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover {
+      background: linear-gradient(135deg, #1A1A1A, #0a0a0a);
+      justify-content: center;
+      text-align: center;
+    }
+
+    .tag {
+      background-color: var(--orange);
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: #FFF;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .cover h1 {
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: 3.5rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .cover h2 {
+      font-size: 1.4rem;
+      color: var(--cream);
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    .section-num {
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: 2.2rem;
+      color: var(--orange);
+      border-left: 4px solid var(--gold);
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+
+    .content-box {
+      background-color: #242424;
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      margin-bottom: 30px;
+    }
+
+    .content-box p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #D0C3B3;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-2 h4 {
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .impact-stat {
+      padding: 30px 20px;
+      border-radius: 8px;
+    }
+    
+    .impact-stat .number {
+      font-size: 3rem;
+      font-family: 'Anton', sans-serif;
+      line-height: 1;
+    }
+
+    .impact-stat .label {
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
+    .footer-note {
+      position: absolute;
+      bottom: 15mm;
+      left: 20mm;
+      right: 20mm;
+      text-align: center;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+      color: #666;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: Cover & Challenge -->
+  <div class="page cover">
+    <div style="margin-bottom: 60px;">
+      <div class="tag">Case Study • Technology & Marketing</div>
+      <h1>The Digital Transformation<br>of a Local Shawarma Brand</h1>
+      <h2>From fragmented street-food marketing to a<br>scalable, automated digital ecosystem.</h2>
+    </div>
+
+    <div style="text-align: left; margin-top: 40px;">
+      <h3 class="section-num">01. The Challenge</h3>
+      <div class="content-box">
+        <p>
+          Shawarma House possessed a world-class culinary product, but suffered from <strong>fragmented local marketing</strong>. Like many independent QSR businesses, their digital footprint was an afterthought. The brand lacked a unified design system, causing social media assets, print posters, and the website to look disconnected. Furthermore, generating new marketing materials for weekly promotions required waiting on freelance designers, causing severe bottlenecks in foot-traffic acquisition.
+        </p>
+      </div>
+    </div>
+    <div class="footer-note">CONFIDENTIAL CASE STUDY • BUILT FOR SHAWARMA HOUSE</div>
+  </div>
+
+  <!-- PAGE 2: Solution & Tech -->
+  <div class="page">
+    <h3 class="section-num">02. The Solution</h3>
+    <div class="grid-2">
+      <div class="content-box">
+        <h4>A. Unified Web Ecosystem</h4>
+        <p style="font-size: 1.1rem;">
+          We built a lightning-fast React application that encapsulated the brand's new visual identity. Deep 'Charcoal' backgrounds contrasting with 'Harissa Orange' and 'Saffron Gold' instantly communicated a premium, yet authentic street-food vibe.
+        </p>
+      </div>
+      <div class="content-box">
+        <h4>B. Custom Poster Engine</h4>
+        <p style="font-size: 1.1rem;">
+          We developed a proprietary, browser-based <strong>Poster Maker Engine</strong>. It allows managers to instantly generate print-ready or social-ready PNG posters by adjusting typography, coordinates, and brand colors on top of pre-approved high-fidelity food assets.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="section-num" style="margin-top: 30px;">03. Technical Architecture</h3>
+    <div class="content-box">
+      <ul style="padding-left: 20px; font-size: 1.1rem; line-height: 1.8; color: #D0C3B3;">
+        <li style="margin-bottom: 10px;"><strong>HTML5 Canvas Export:</strong> The generator utilizes 2D Canvas APIs with precise <code style="color: var(--gold)">colorSpace: 'srgb'</code> matching and automated word-wrapping to guarantee 1:1 fidelity.</li>
+        <li style="margin-bottom: 10px;"><strong>Design System Enforcement:</strong> Hardcoded hex values (#FF6B35, #FFB347) prevent franchisees from breaking brand guidelines.</li>
+        <li><strong>Responsive State Management:</strong> React hooks maintain real-time absolute positioning (X/Y coordinates) overlaying CSS Grid structures.</li>
+      </ul>
+    </div>
+    <div class="footer-note">CONFIDENTIAL CASE STUDY • BUILT FOR SHAWARMA HOUSE</div>
+  </div>
+
+  <!-- PAGE 3: Impact -->
+  <div class="page">
+    <h3 class="section-num">04. The Impact</h3>
+    
+    <div class="impact-grid">
+      <div class="impact-stat" style="background: var(--orange); color: white;">
+        <div class="number">10x</div>
+        <div class="label">Faster Asset Creation</div>
+      </div>
+      <div class="impact-stat" style="background: var(--gold); color: #1A1A1A;">
+        <div class="number">100%</div>
+        <div class="label">Brand Consistency</div>
+      </div>
+      <div class="impact-stat" style="background: white; color: #1A1A1A;">
+        <div class="number">$0</div>
+        <div class="label">Ongoing Agency Fees</div>
+      </div>
+    </div>
+
+    <div class="content-box" style="margin-top: 30px;">
+      <p style="text-align: center; font-size: 1.3rem;">
+        By moving from an outsourced dependency model to an empowered internal toolset, Shawarma House now reacts to market demands in minutes, not days.
+      </p>
+    </div>
+
+    <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+      <div style="text-align: center;">
+        <h1 style="font-family: 'Reem Kufi', sans-serif; font-size: 3rem; color: #333; margin-bottom: 10px; line-height: 1;">SHAWARMA<br><span style="color: #444">HOUSE</span></h1>
+      </div>
+    </div>
+    
+    <div class="footer-note">CONFIDENTIAL CASE STUDY • BUILT FOR SHAWARMA HOUSE</div>
+  </div>
+
+</body>
+</html>

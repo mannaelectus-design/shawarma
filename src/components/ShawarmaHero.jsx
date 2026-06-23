@@ -149,55 +149,55 @@ export default function ShawarmaHero() {
     center: {
       left: '50%',
       x: '-50%',
-      scale: isMobile ? 1.25 : 1.68,
+      scale: isMobile ? 1 : 1.68,
       filter: 'blur(0px) brightness(1)',
       opacity: 1,
       zIndex: 20,
-      height: isMobile ? '60%' : '92%',
-      bottom: isMobile ? '22%' : '0%',
+      height: isMobile ? '50%' : '92%',
+      bottom: isMobile ? '26%' : '0%',
       transition: { duration: 0.8, type: 'spring', bounce: 0.25 }
     },
     left: {
-      left: isMobile ? '20%' : '30%',
+      left: isMobile ? '15%' : '30%',
       x: '-50%',
       scale: 1,
       filter: 'blur(2px) brightness(0.8)',
       opacity: 0.85,
       zIndex: 10,
-      height: isMobile ? '16%' : '28%',
-      bottom: isMobile ? '32%' : '12%',
+      height: isMobile ? '28%' : '28%',
+      bottom: isMobile ? '30%' : '12%',
       transition: { duration: 0.8, type: 'spring', bounce: 0.2 }
     },
     right: {
-      left: isMobile ? '80%' : '70%',
+      left: isMobile ? '85%' : '70%',
       x: '-50%',
       scale: 1,
       filter: 'blur(2px) brightness(0.8)',
       opacity: 0.85,
       zIndex: 10,
-      height: isMobile ? '16%' : '28%',
-      bottom: isMobile ? '32%' : '12%',
+      height: isMobile ? '28%' : '28%',
+      bottom: isMobile ? '30%' : '12%',
       transition: { duration: 0.8, type: 'spring', bounce: 0.2 }
     },
     back: {
-      left: isMobile ? '35%' : '40%',
+      left: isMobile ? '25%' : '40%',
       x: '-50%',
       scale: 0.95,
       filter: isMobile ? 'blur(2px) brightness(0.6)' : 'blur(4px) brightness(0.6)',
       opacity: 0.5,
       zIndex: 5,
-      height: isMobile ? '13%' : '22%',
+      height: isMobile ? '22%' : '22%',
       bottom: isMobile ? '32%' : '12%',
       transition: { duration: 0.8, type: 'spring', bounce: 0.15 }
     },
     farBack: {
-      left: isMobile ? '65%' : '60%',
+      left: isMobile ? '75%' : '60%',
       x: '-50%',
       scale: 0.9,
       filter: isMobile ? 'blur(3px) brightness(0.5)' : 'blur(5px) brightness(0.5)',
       opacity: 0.3,
       zIndex: 3,
-      height: isMobile ? '11%' : '19%',
+      height: isMobile ? '18%' : '19%',
       bottom: isMobile ? '34%' : '14%',
       transition: { duration: 0.8, type: 'spring', bounce: 0.15 }
     }
@@ -376,15 +376,17 @@ export default function ShawarmaHero() {
       {/* ── 5. Right-side: Label + Desc ── */}
       <div style={{
         position: 'absolute',
-        top: '50%',
-        right: isMobile ? 16 : 64,
-        transform: 'translateY(-50%)',
+        top: isMobile ? 'auto' : '50%',
+        bottom: isMobile ? 120 : 'auto',
+        right: isMobile ? 'auto' : 64,
+        left: isMobile ? 16 : 'auto',
+        transform: isMobile ? 'none' : 'translateY(-50%)',
         zIndex: 60,
         maxWidth: isMobile ? 240 : 340,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-end',
-        textAlign: 'right',
+        alignItems: isMobile ? 'flex-start' : 'flex-end',
+        textAlign: isMobile ? 'left' : 'right',
       }}>
         {/* Active figurine name */}
         <p 

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3A1A05" />
+      <stop offset="100%" stop-color="#1A1A1A" />
+    </radialGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="neon-glow-gold" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#bg-glow)" />
+
+  <!-- Grid Pattern overlay -->
+  <g stroke="#333" stroke-width="1" opacity="0.5">
+    <path d="M0,200 L800,200 M0,400 L800,400 M0,600 L800,600 M0,800 L800,800" />
+    <path d="M200,0 L200,1000 M400,0 L400,1000 M600,0 L600,1000" />
+  </g>
+
+  <!-- Orange Center Glow -->
+  <circle cx="400" cy="500" r="300" fill="#FF6B35" opacity="0.15" filter="blur(50px)" />
+
+  <!-- "NOW OPEN" Badge -->
+  <rect x="250" y="250" width="300" height="60" rx="30" fill="#FFB347" />
+  <text x="400" y="290" font-family="'Outfit', sans-serif" font-weight="800" font-size="32" fill="#1A1A1A" text-anchor="middle" letter-spacing="4">NOW OPEN</text>
+
+  <!-- Neon "SHAWARMA" Text -->
+  <text x="400" y="450" font-family="'Anton', sans-serif" font-size="110" fill="#FFF" text-anchor="middle" letter-spacing="2" filter="url(#neon-glow)" stroke="#FF6B35" stroke-width="2">
+    SHAWARMA
+  </text>
+  
+  <!-- Neon "HOUSE" Text -->
+  <text x="400" y="580" font-family="'Anton', sans-serif" font-size="110" fill="#FFB347" text-anchor="middle" letter-spacing="2" filter="url(#neon-glow-gold)">
+    HOUSE
+  </text>
+
+  <!-- Decorative Sparks -->
+  <circle cx="200" cy="300" r="4" fill="#FFB347" filter="url(#neon-glow-gold)" />
+  <circle cx="650" cy="350" r="6" fill="#FF6B35" filter="url(#neon-glow)" />
+  <circle cx="150" cy="650" r="5" fill="#FF6B35" filter="url(#neon-glow)" />
+  <circle cx="600" cy="700" r="4" fill="#FFB347" filter="url(#neon-glow-gold)" />
+  <circle cx="300" cy="800" r="7" fill="#FF6B35" opacity="0.7" />
+  <circle cx="500" cy="200" r="3" fill="#FFF" opacity="0.5" />
+</svg>

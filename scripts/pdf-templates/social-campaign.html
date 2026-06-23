@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shawarma House - Social Campaign</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600;800&family=Reem+Kufi:wght@400;600;700&display=swap');
+
+    :root {
+      --charcoal: #1A1A1A;
+      --orange: #FF6B35;
+      --gold: #FFB347;
+      --cream: #F5E6D3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--charcoal);
+      color: var(--cream);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      background-color: var(--charcoal);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-block {
+      background-color: var(--orange);
+      padding: 15mm;
+      text-align: center;
+    }
+    
+    .header-block h1 {
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .header-block p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #FFF0E6;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .image-container {
+      width: 100%;
+      height: 120mm;
+      background-color: #000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 5px solid var(--orange);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .content {
+      padding: 15mm;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10mm;
+    }
+
+    .tag {
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .day-title {
+      font-family: 'Reem Kufi', sans-serif;
+      font-size: 2.2rem;
+      color: var(--orange);
+      line-height: 1.1;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      font-weight: 800;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
+
+    .text-block p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #D0C3B3;
+    }
+
+    .copy-variations {
+      display: flex;
+      gap: 10mm;
+    }
+
+    .copy-box {
+      flex: 1;
+      background: #242424;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 3px solid var(--orange);
+    }
+
+    .copy-box strong {
+      display: block;
+      color: white;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    .caption-box {
+      background: #111;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      color: #A0A0A0;
+      white-space: pre-wrap;
+      border: 1px dashed #444;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover Page -->
+  <div class="page" style="justify-content: center; align-items: center; background: linear-gradient(135deg, #1A1A1A, #000);">
+    <div style="text-align: center;">
+      <h1 style="font-family: 'Reem Kufi', sans-serif; font-size: 5rem; color: var(--orange); margin-bottom: 10px; line-height: 1;">SHAWARMA<br><span style="color: var(--gold)">HOUSE</span></h1>
+      <p style="font-size: 1.5rem; color: var(--cream); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300;">7-Day Launch Campaign</p>
+      <div style="margin-top: 50px; width: 50px; height: 5px; background: var(--orange); display: inline-block;"></div>
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_spices.png" alt="Spices">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 1</span>
+        <h2 class="day-title">The Teaser: It Starts With The Spice</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Establish authenticity immediately. Focus on the raw ingredients and the heritage behind the flavor profile before ever showing the final product.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Direct)</strong>
+            "Imported spices. Local passion. Something real is coming."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Mysterious)</strong>
+            "The secret is in the blend. Opening soon."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">Real shawarma doesn't start on a grill. It starts in the markets of the Levant. We're bringing authentic, hand-blended spices to your neighborhood. No shortcuts. Just tradition. 🌶️✨
+
+Are you ready? Drop a 🔥 if you can't wait!
+
+#ShawarmaHouse #AuthenticEats #ComingSoon #StreetFood</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_meat_slice.png" alt="Meat Slice">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 2</span>
+        <h2 class="day-title">The Craft: 100% Halal Beef</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Build trust through transparency. Show the high-quality meat carving process to contrast against low-quality fast food alternatives.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Direct)</strong>
+            "100% Halal Beef. Stacked fresh daily."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Descriptive)</strong>
+            "Perfectly marinated. Expertly carved."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">Quality you can see. Every single day, we stack 100% Halal beef, marinated overnight in our signature blend of 14 spices. The result? Juicy, perfectly charred cuts straight off the spit. 🥩🔪
+
+Opening this weekend. Tag your lunch crew! 👇
+
+#HalalFood #ShawarmaLovers #FreshIngredients #FoodCraving</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_chicken_shawarma.png" alt="Chicken">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 3</span>
+        <h2 class="day-title">The Classic: Garlic Chicken</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Highlight the crowd-favorite. Emphasize the legendary garlic sauce (Toum) which drives heavy customer retention.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Craveable)</strong>
+            "Extra Garlic Sauce is always the right answer."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Simple)</strong>
+            "Classic Chicken Shawarma. Done Right."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">Let's talk about the Garlic Sauce. 🧄 Our Toum is whipped fresh every morning—fluffy, potent, and the perfect pairing to our charred chicken shawarma. 
+
+Wrap it. Plate it. Devour it.
+
+#ChickenShawarma #GarlicSauce #Toum #MiddleEasternFood</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_fries.png" alt="Fries">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 4</span>
+        <h2 class="day-title">The Sidekick: Spiced Fries</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Upsell focus. Convert single-item buyers into combo-meal buyers by showcasing the premium sides.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Direct)</strong>
+            "Golden, crispy, and dusted with Harissa."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Action)</strong>
+            "Upgrade your wrap. Make it a meal."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">Never skip the sides. 🍟 Our signature fries are cut thick, fried until golden, and dusted with our secret Harissa spice blend. 
+
+Pro tip: Dip them straight into the garlic sauce. You're welcome.
+
+#FrenchFries #Harissa #FoodHacks #ComboMeal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_platter.png" alt="Platter">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 5</span>
+        <h2 class="day-title">The Feast: Mixed Platter</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Target group dining and high-ticket orders. Show abundance, sharing, and variety.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Social)</strong>
+            "Built for sharing. Made for craving."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Value)</strong>
+            "Can't decide? Have it all."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">Why choose when you can have it all? The Shawarma House Mixed Platter brings you the best of everything: Beef, Chicken, fresh hummus, salads, and warm pita. 
+
+Grab your friends. It’s feast time. 🥙🔥
+
+#Feast #SharePlatter #Hummus #DinnerVibes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_beef_shawarma.png" alt="Beef Shawarma Wrap">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 6</span>
+        <h2 class="day-title">The Wrap: Built Heavy</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Highlight the value proposition. Show the size, weight, and build of the wrap to justify the premium price point.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Value)</strong>
+            "Stuffed to the brim. No compromises."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Craving)</strong>
+            "The perfect bite, every single time."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">We don't do light portions. When you order a Shawarma House wrap, you're getting a heavy, toasted, flavor-packed meal that keeps you full. 
+
+Tomorrow is the big day. Who's bringing the appetite?
+
+#ShawarmaWrap #HeavyPortions #Foodie #OpeningTomorrow</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="page">
+    <div class="image-container">
+      <img src="assets/poster_bg_grand_opening.svg" alt="Grand Opening Neon Sign">
+    </div>
+    <div class="content">
+      <div>
+        <span class="tag">Day 7</span>
+        <h2 class="day-title">Grand Opening: We Are Live</h2>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Strategic Goal</div>
+        <p>Drive immediate foot traffic. Create urgency and celebrate the launch with a hard call-to-action.</p>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Poster Overlay Copy</div>
+        <div class="copy-variations">
+          <div class="copy-box">
+            <strong>Variation A (Urgency)</strong>
+            "We are open. The grills are hot."
+          </div>
+          <div class="copy-box">
+            <strong>Variation B (Celebration)</strong>
+            "Welcome to Shawarma House."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="section-title">Instagram Caption</div>
+        <div class="caption-box">THE DOORS ARE OPEN! 🔥
+
+After months of perfecting our spice blends, marinating the meats, and whipping up gallons of garlic sauce... Shawarma House is officially open for business.
+
+📍 Find us at [Insert Location]
+⏰ Open today until late!
+
+Come get your fix. See you at the counter!
+
+#GrandOpening #ShawarmaHouse #NowOpen #StreetFood</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -7,49 +7,49 @@ const bgPresets = [
     id: 'fries', 
     name: 'Loaded Fries', 
     path: '/images/poster_bg_fries.png',
-    headline: 'THE ULTIMATE SIDELINE',
-    subheading: 'Masala spiced, cheese loaded, beef topped fries.',
-    cta: 'CRUNCH NOW: 0700-SHAWARMA'
+    headline: 'LOADED TO PERFECTION',
+    subheading: 'Crispy, golden fries smothered in melted cheese and spiced beef.',
+    cta: 'SATISFY YOUR CRAVING'
   },
   { 
     id: 'beef', 
     name: 'Beef Shawarma', 
     path: '/images/poster_bg_beef_shawarma.png',
-    headline: 'JUICY TO THE CORE',
-    subheading: 'Slow-grilled seasoned beef wrapped in warm pita.',
-    cta: 'GRAB A BITE IN BIO'
+    headline: 'THE BOLD BITE',
+    subheading: 'Premium slow-roasted beef, carved fresh and wrapped warm.',
+    cta: 'ORDER YOURS NOW'
   },
   { 
     id: 'chicken', 
     name: 'Chicken Shawarma', 
     path: '/images/poster_bg_chicken_shawarma.png',
-    headline: 'CRISPY & PERFECT',
-    subheading: 'Tender chicken thigh with signature house garlic paste.',
-    cta: 'ORDER CHICKEN JUMBO'
+    headline: 'GARLIC & GOLD',
+    subheading: 'Perfectly spiced chicken shawarma with our legendary garlic sauce.',
+    cta: 'TASTE THE LEGEND'
   },
   { 
     id: 'carving', 
     name: 'Sizzling Spit', 
     path: '/images/poster_bg_meat_slice.png',
-    headline: 'MASTERFULLY SLICED',
-    subheading: 'Sizzling meat cut at the perfect angle for maximum juice.',
-    cta: 'VISIT OUR NGONG ROAD HUB'
+    headline: 'FRESH OFF THE SPIT',
+    subheading: 'Sizzling, juicy perfection carved right before your eyes.',
+    cta: 'EXPERIENCE IT LIVE'
   },
   { 
     id: 'platter', 
     name: 'Saffron Platter', 
     path: '/images/poster_bg_platter.png',
-    headline: 'THE FULL FEAST',
-    subheading: 'Spiced meats over saffron rice with creamy house hummus.',
-    cta: 'CATER YOUR NEXT EVENT'
+    headline: 'THE ROYAL PLATTER',
+    subheading: 'A feast of flavors: grilled meats, fresh hummus, and golden saffron rice.',
+    cta: 'DINE LIKE A KING'
   },
   { 
     id: 'spices', 
     name: 'Morning Spices', 
     path: '/images/poster_bg_spices.png',
-    headline: '14 SPICES. NO SHORTCUTS.',
-    subheading: 'Freshly ground daily for flavor that hits different.',
-    cta: 'TASTE AUTHENTICITY TODAY'
+    headline: 'THE SECRET BLEND',
+    subheading: '14 authentic spices, ground daily. No shortcuts, just pure flavor.',
+    cta: 'DISCOVER THE TASTE'
   }
 ];
 
@@ -60,21 +60,28 @@ export default function PosterMaker() {
   // Text layers state
   const [headline, setHeadline] = useState(bgPresets[0].headline);
   const [headlineSize, setHeadlineSize] = useState(48);
-  const [headlineColor, setHeadlineColor] = useState('#FF4B00'); // Harissa Orange
+  const [headlineColor, setHeadlineColor] = useState('#FF6B35'); // Brand Orange
   const [headlineY, setHeadlineY] = useState(30); // percentage from top
+  const [headlineX, setHeadlineX] = useState(50); // percentage from left
 
   const [subheading, setSubheading] = useState(bgPresets[0].subheading);
   const [subheadingSize, setSubheadingSize] = useState(24);
-  const [subheadingColor, setSubheadingColor] = useState('#FFC700'); // Saffron Yellow
+  const [subheadingColor, setSubheadingColor] = useState('#FFB347'); // Brand Gold
   const [subheadingY, setSubheadingY] = useState(42);
+  const [subheadingX, setSubheadingX] = useState(50);
 
   const [cta, setCta] = useState(bgPresets[0].cta);
   const [ctaSize, setCtaSize] = useState(18);
-  const [ctaColor, setCtaColor] = useState('#FFFFFF');
+  const [ctaColor, setCtaColor] = useState('#F5E6D3'); // Brand Cream
   const [ctaY, setCtaY] = useState(85);
+  const [ctaX, setCtaX] = useState(50);
 
   const [textShadow, setTextShadow] = useState(true);
   const [showLogo, setShowLogo] = useState(true);
+  const [logoX, setLogoX] = useState(50);
+  const [logoY, setLogoY] = useState(6);
+  const [logoColorMain, setLogoColorMain] = useState('#FFB347');
+  const [logoColorSub, setLogoColorSub] = useState('#FF6B35');
   
   const fileInputRef = useRef(null);
   const previewRef = useRef(null);
@@ -110,7 +117,12 @@ export default function PosterMaker() {
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { colorSpace: 'srgb' });
+
+    // Fill the canvas with the same base background color as the preview's parent container
+    // This prevents transparent areas in PNGs from causing color shifts in different image viewers
+    ctx.fillStyle = '#161616';
+    ctx.fillRect(0, 0, width, height);
 
     const bgImg = new Image();
     bgImg.crossOrigin = 'anonymous';
@@ -136,40 +148,51 @@ export default function PosterMaker() {
 
       ctx.drawImage(bgImg, offsetX, offsetY, drawWidth, drawHeight);
 
-      // Draw subtle dark vignette overlay for readability
+      // Draw subtle dark vignette overlay for readability exactly matching HTML
       const grad = ctx.createLinearGradient(0, 0, 0, height);
       grad.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
       grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.1)');
-      grad.addColorStop(1, 'rgba(0, 0, 0, 0.7)');
+      grad.addColorStop(1, 'rgba(0, 0, 0, 0.75)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, width, height);
 
       // Draw logo if toggled
       if (showLogo) {
         ctx.save();
-        ctx.fillStyle = '#FFC700'; // Saffron Yellow
-        ctx.font = 'bold 36px "Anton", sans-serif';
         ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
         ctx.shadowBlur = 10;
-        ctx.fillText('SHAWARMA HOUSE', width / 2, 120);
 
-        ctx.fillStyle = '#FF4B00';
-        ctx.font = 'bold 18px "Inter", sans-serif';
-        ctx.fillText('FRESH • HOT • UNSTOPPABLE', width / 2, 160);
+        const logoXPos = (logoX / 100) * width;
+        const logoYPos = (logoY / 100) * height;
+
+        ctx.fillStyle = logoColorMain; // Brand Gold by default
+        ctx.font = 'bold 67px "Anton", sans-serif';
+        ctx.fillText('SHAWARMA HOUSE', logoXPos, logoYPos - 20);
+
+        ctx.fillStyle = logoColorSub; // Brand Orange by default
+        ctx.font = '800 31px "Inter", sans-serif';
+        ctx.fillText('FRESH • HOT • UNSTOPPABLE', logoXPos, logoYPos + 20);
         ctx.restore();
       }
 
       // Draw text helper function
-      const drawText = (text, size, color, yPercent, isTitle = false) => {
+      const drawText = (text, size, color, yPercent, xPercent, isTitle = false) => {
         ctx.save();
         ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillStyle = color;
         
+        // Exact scale: size in HTML is (size / 20) rem. 1rem = 16px. 
+        // Canvas is 1080 wide, preview is 360 wide (scale = 3).
+        // (size / 20) * 16 * 3 = size * 2.4
+        const fontSize = size * 2.4;
+        
         if (isTitle) {
-          ctx.font = `${size * 2}px "Anton", sans-serif`;
+          ctx.font = `700 ${fontSize}px "Reem Kufi", sans-serif`;
         } else {
-          ctx.font = `bold ${size * 2}px "Inter", sans-serif`;
+          ctx.font = `bold ${fontSize}px "Outfit", sans-serif`;
         }
 
         if (textShadow) {
@@ -180,14 +203,40 @@ export default function PosterMaker() {
         }
 
         const yPos = (yPercent / 100) * height;
-        ctx.fillText(text.toUpperCase(), width / 2, yPos);
+        const xPos = (xPercent / 100) * width;
+        const maxWidth = width * 0.9; // 90% width
+        
+        const words = text.toUpperCase().split(' ');
+        let line = '';
+        const lines = [];
+        
+        for (let n = 0; n < words.length; n++) {
+          const testLine = line + words[n] + ' ';
+          const metrics = ctx.measureText(testLine);
+          
+          if (metrics.width > maxWidth && n > 0) {
+            lines.push(line.trim());
+            line = words[n] + ' ';
+          } else {
+            line = testLine;
+          }
+        }
+        lines.push(line.trim());
+        
+        const lineHeight = isTitle ? fontSize * 1.0 : fontSize * 1.2;
+        const totalHeight = lines.length * lineHeight;
+        const startY = yPos - (totalHeight / 2) + (lineHeight / 2);
+
+        lines.forEach((lineText, index) => {
+          ctx.fillText(lineText, xPos, startY + (index * lineHeight));
+        });
         ctx.restore();
       };
 
       // Draw text layers
-      drawText(headline, headlineSize, headlineColor, headlineY, true);
-      drawText(subheading, subheadingSize, subheadingColor, subheadingY, false);
-      drawText(cta, ctaSize, ctaColor, ctaY, false);
+      drawText(headline, headlineSize, headlineColor, headlineY, headlineX, true);
+      drawText(subheading, subheadingSize, subheadingColor, subheadingY, subheadingX, false);
+      drawText(cta, ctaSize, ctaColor, ctaY, ctaX, false);
 
       // Trigger download
       const dataUrl = canvas.toDataURL('image/png');
@@ -214,7 +263,7 @@ export default function PosterMaker() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '40px', alignItems: 'start' }}>
           
           {/* Canvas Preview Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#161616', borderRadius: '16px', padding: '40px', border: '1px solid #333' }}>
+          <div style={{ position: 'sticky', top: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#161616', borderRadius: '16px', padding: '40px', border: '1px solid #333' }}>
             
             {/* The Poster Preview Box */}
             <div 
@@ -248,11 +297,19 @@ export default function PosterMaker() {
 
               {/* Branding Header */}
               {showLogo && (
-                <div style={{ position: 'absolute', top: '24px', width: '100%', textAlign: 'center', zIndex: 2 }}>
-                  <div style={{ fontFamily: "'Anton', sans-serif", fontSize: '1.4rem', color: 'var(--yellow)', textShadow: '0 2px 8px rgba(0,0,0,0.8)', letterSpacing: '0.02em', lineHeight: 1.1 }}>
+                <div style={{ 
+                  position: 'absolute', 
+                  top: `${logoY}%`, 
+                  left: `${logoX}%`, 
+                  width: '100%', 
+                  textAlign: 'center', 
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 2 
+                }}>
+                  <div style={{ fontFamily: "'Anton', sans-serif", fontSize: '1.4rem', color: logoColorMain, textShadow: '0 2px 8px rgba(0,0,0,0.8)', letterSpacing: '0.02em', lineHeight: 1.1 }}>
                     SHAWARMA HOUSE
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: 'var(--orange)', textShadow: '0 2px 4px rgba(0,0,0,0.8)', letterSpacing: '0.15em', fontWeight: 800 }}>
+                  <div style={{ fontSize: '0.65rem', color: logoColorSub, textShadow: '0 2px 4px rgba(0,0,0,0.8)', letterSpacing: '0.15em', fontWeight: 800 }}>
                     FRESH • HOT • UNSTOPPABLE
                   </div>
                 </div>
@@ -263,17 +320,18 @@ export default function PosterMaker() {
                 style={{
                   position: 'absolute',
                   top: `${headlineY}%`,
-                  left: '5%',
-                  right: '5%',
+                  left: `${headlineX}%`,
+                  width: '90%',
                   textAlign: 'center',
-                  transform: 'translateY(-50%)',
+                  transform: 'translate(-50%, -50%)',
                   zIndex: 2,
                   pointerEvents: 'none'
                 }}
               >
                 <span 
                   style={{
-                    fontFamily: "'Anton', sans-serif",
+                    fontFamily: "'Reem Kufi', sans-serif",
+                    fontWeight: 700,
                     fontSize: `${headlineSize / 20}rem`,
                     color: headlineColor,
                     lineHeight: 1,
@@ -291,17 +349,17 @@ export default function PosterMaker() {
                 style={{
                   position: 'absolute',
                   top: `${subheadingY}%`,
-                  left: '5%',
-                  right: '5%',
+                  left: `${subheadingX}%`,
+                  width: '90%',
                   textAlign: 'center',
-                  transform: 'translateY(-50%)',
+                  transform: 'translate(-50%, -50%)',
                   zIndex: 2,
                   pointerEvents: 'none'
                 }}
               >
                 <span 
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Outfit', sans-serif",
                     fontWeight: 700,
                     fontSize: `${subheadingSize / 20}rem`,
                     color: subheadingColor,
@@ -319,17 +377,17 @@ export default function PosterMaker() {
                 style={{
                   position: 'absolute',
                   top: `${ctaY}%`,
-                  left: '5%',
-                  right: '5%',
+                  left: `${ctaX}%`,
+                  width: '90%',
                   textAlign: 'center',
-                  transform: 'translateY(-50%)',
+                  transform: 'translate(-50%, -50%)',
                   zIndex: 2,
                   pointerEvents: 'none'
                 }}
               >
                 <span 
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Outfit', sans-serif",
                     fontWeight: 800,
                     fontSize: `${ctaSize / 20}rem`,
                     color: ctaColor,
@@ -463,13 +521,17 @@ export default function PosterMaker() {
                     <input type="range" min="20" max="100" value={headlineSize} onChange={e => setHeadlineSize(parseInt(e.target.value))} style={{ width: '100%' }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Y Position ({headlineY}%)</label>
-                    <input type="range" min="10" max="90" value={headlineY} onChange={e => setHeadlineY(parseInt(e.target.value))} style={{ width: '100%' }} />
+                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>X Pos ({headlineX}%)</label>
+                    <input type="range" min="0" max="100" value={headlineX} onChange={e => setHeadlineX(parseInt(e.target.value))} style={{ width: '100%' }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Y Pos ({headlineY}%)</label>
+                    <input type="range" min="0" max="100" value={headlineY} onChange={e => setHeadlineY(parseInt(e.target.value))} style={{ width: '100%' }} />
                   </div>
                 </div>
                 <div style={{ marginTop: '8px' }}>
                   <label style={{ fontSize: '0.75rem', color: '#888', marginRight: '10px' }}>Color:</label>
-                  {['#FF4B00', '#FFC700', '#FFFFFF', '#000000'].map(c => (
+                  {['#FF6B35', '#FFB347', '#F5E6D3', '#1A1A1A'].map(c => (
                     <button key={c} onClick={() => setHeadlineColor(c)} style={{ width: '20px', height: '20px', backgroundColor: c, border: headlineColor === c ? '2px solid white' : '1px solid #555', borderRadius: '50%', marginRight: '6px', cursor: 'pointer' }} />
                   ))}
                 </div>
@@ -492,13 +554,17 @@ export default function PosterMaker() {
                     <input type="range" min="12" max="60" value={subheadingSize} onChange={e => setSubheadingSize(parseInt(e.target.value))} style={{ width: '100%' }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Y Position ({subheadingY}%)</label>
-                    <input type="range" min="10" max="90" value={subheadingY} onChange={e => setSubheadingY(parseInt(e.target.value))} style={{ width: '100%' }} />
+                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>X Pos ({subheadingX}%)</label>
+                    <input type="range" min="0" max="100" value={subheadingX} onChange={e => setSubheadingX(parseInt(e.target.value))} style={{ width: '100%' }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Y Pos ({subheadingY}%)</label>
+                    <input type="range" min="0" max="100" value={subheadingY} onChange={e => setSubheadingY(parseInt(e.target.value))} style={{ width: '100%' }} />
                   </div>
                 </div>
                 <div style={{ marginTop: '8px' }}>
                   <label style={{ fontSize: '0.75rem', color: '#888', marginRight: '10px' }}>Color:</label>
-                  {['#FFC700', '#FF4B00', '#FFFFFF', '#000000'].map(c => (
+                  {['#FFB347', '#FF6B35', '#F5E6D3', '#1A1A1A'].map(c => (
                     <button key={c} onClick={() => setSubheadingColor(c)} style={{ width: '20px', height: '20px', backgroundColor: c, border: subheadingColor === c ? '2px solid white' : '1px solid #555', borderRadius: '50%', marginRight: '6px', cursor: 'pointer' }} />
                   ))}
                 </div>
@@ -521,20 +587,24 @@ export default function PosterMaker() {
                     <input type="range" min="10" max="40" value={ctaSize} onChange={e => setCtaSize(parseInt(e.target.value))} style={{ width: '100%' }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Y Position ({ctaY}%)</label>
-                    <input type="range" min="10" max="95" value={ctaY} onChange={e => setCtaY(parseInt(e.target.value))} style={{ width: '100%' }} />
+                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>X Pos ({ctaX}%)</label>
+                    <input type="range" min="0" max="100" value={ctaX} onChange={e => setCtaX(parseInt(e.target.value))} style={{ width: '100%' }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Y Pos ({ctaY}%)</label>
+                    <input type="range" min="0" max="100" value={ctaY} onChange={e => setCtaY(parseInt(e.target.value))} style={{ width: '100%' }} />
                   </div>
                 </div>
                 <div style={{ marginTop: '8px' }}>
                   <label style={{ fontSize: '0.75rem', color: '#888', marginRight: '10px' }}>Color:</label>
-                  {['#FFFFFF', '#FFC700', '#FF4B00', '#000000'].map(c => (
+                  {['#F5E6D3', '#FFB347', '#FF6B35', '#1A1A1A'].map(c => (
                     <button key={c} onClick={() => setCtaColor(c)} style={{ width: '20px', height: '20px', backgroundColor: c, border: ctaColor === c ? '2px solid white' : '1px solid #555', borderRadius: '50%', marginRight: '6px', cursor: 'pointer' }} />
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Toggle Switch Toggles */}
+            {/* Toggle Switch Toggles & Branding */}
             <div style={{ backgroundColor: 'var(--charcoal-light)', borderRadius: '12px', padding: '20px', border: '1px solid #333', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
                 <span>Overlay Brand Logo</span>
@@ -545,6 +615,43 @@ export default function PosterMaker() {
                   style={{ width: '20px', height: '20px', accentColor: 'var(--orange)' }} 
                 />
               </label>
+
+              {showLogo && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '4px', marginBottom: '8px' }}>
+                  <div style={{ display: 'flex', gap: '15px' }}>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Logo X ({logoX}%)</label>
+                      <input type="range" min="0" max="100" value={logoX} onChange={e => setLogoX(parseInt(e.target.value))} style={{ width: '100%' }} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ display: 'block', fontSize: '0.75rem', color: '#888' }}>Logo Y ({logoY}%)</label>
+                      <input type="range" min="0" max="100" value={logoY} onChange={e => setLogoY(parseInt(e.target.value))} style={{ width: '100%' }} />
+                    </div>
+                  </div>
+                  
+                  <div style={{ display: 'flex', gap: '15px' }}>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ display: 'block', fontSize: '0.75rem', color: '#888', marginBottom: '4px' }}>Main Color</label>
+                      <div>
+                        {['#FFB347', '#FF6B35', '#F5E6D3', '#1A1A1A'].map(c => (
+                          <button key={c} onClick={() => setLogoColorMain(c)} style={{ width: '20px', height: '20px', backgroundColor: c, border: logoColorMain === c ? '2px solid white' : '1px solid #555', borderRadius: '50%', marginRight: '6px', cursor: 'pointer' }} />
+                        ))}
+                      </div>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ display: 'block', fontSize: '0.75rem', color: '#888', marginBottom: '4px' }}>Sub Color</label>
+                      <div>
+                        {['#FF6B35', '#FFB347', '#F5E6D3', '#1A1A1A'].map(c => (
+                          <button key={c} onClick={() => setLogoColorSub(c)} style={{ width: '20px', height: '20px', backgroundColor: c, border: logoColorSub === c ? '2px solid white' : '1px solid #555', borderRadius: '50%', marginRight: '6px', cursor: 'pointer' }} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <hr style={{ border: '0', height: '1px', backgroundColor: '#333' }} />
+
               <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
                 <span>Enable Premium Shadow</span>
                 <input 
