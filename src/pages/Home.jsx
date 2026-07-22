@@ -102,64 +102,89 @@ export default function Home() {
       <section ref={parallaxRef} className="section" style={{ position: 'relative', overflow: 'hidden' }}>
         <motion.div style={{ position: 'absolute', top: '-20%', bottom: '-20%', left: 0, right: 0, y: backgroundY }}>
           <ProgressiveImage
-            src="/images/why_different_flames.webp"
-            alt="Chef carving shawarma from a vertical spit with flames in the background"
+            src="/images/why_different_flames_new.png"
+            alt="Photorealistic chef carving shawarma from vertical spit with flames and embers"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </motion.div>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(16, 8, 5, 0.95) 0%, rgba(16, 8, 5, 0.7) 50%, rgba(16, 8, 5, 0.2) 100%)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(16, 8, 5, 0.95) 0%, rgba(16, 8, 5, 0.8) 50%, rgba(16, 8, 5, 0.4) 100%)', zIndex: 1 }} />
         
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <motion.div
-            className="section-header"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2, margin: "0px 0px -50px 0px" }}
-            variants={stagger}
-            style={{ textAlign: 'left', marginBottom: 48 }}
-          >
-            <motion.span className="overline" variants={fadeUp}>Why We're Different</motion.span>
-            <motion.h2 className="section-title" variants={fadeUp}>
-              Real Food. <span className="text-orange">Real Flavour.</span>
-            </motion.h2>
-            <div className="divider" style={{ marginLeft: 0 }} />
-            <p style={{ color: 'var(--cream-dim)', maxWidth: 600, fontSize: '1.1rem' }}>
-              We don't cut corners. From our overnight marinades to our blazing grills, everything is designed for maximum flavor.
-            </p>
-          </motion.div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 48, alignItems: 'center' }}>
+            
+            {/* Left Column Text & Feature Points */}
+            <div>
+              <motion.div
+                className="section-header"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2, margin: "0px 0px -50px 0px" }}
+                variants={stagger}
+                style={{ textAlign: 'left', marginBottom: 36 }}
+              >
+                <motion.span className="overline" variants={fadeUp}>Why We're Different</motion.span>
+                <motion.h2 className="section-title" variants={fadeUp}>
+                  Real Food. <span className="text-orange">Real Flavour.</span>
+                </motion.h2>
+                <div className="divider" style={{ marginLeft: 0 }} />
+                <p style={{ color: 'var(--cream-dim)', maxWidth: 540, fontSize: '1.08rem' }}>
+                  We don't cut corners. From our overnight marinades to our blazing grills, everything is designed for maximum flavor.
+                </p>
+              </motion.div>
 
-          <div style={{ maxWidth: '600px' }}>
-            <div className="why-grid" style={{ gridTemplateColumns: '1fr', display: 'flex', flexDirection: 'column', gap: '32px' }}>
-              {[
-                {
-                  icon: <Leaf size={26} />, title: 'Fresh Ingredients',
-                  desc: 'Crisp veggies, daily-baked pita, and premium cuts of meat.',
-                },
-                {
-                  icon: <UtensilsCrossed size={26} />, title: 'Flame-Grilled',
-                  desc: 'Authentic roasting methods for that unbeatable smoky taste.',
-                },
-                {
-                  icon: <Truck size={26} />, title: 'Fast Delivery',
-                  desc: "Hot and fresh to your door, exactly when you crave it.",
-                },
-              ].map((card, i) => (
-                <motion.div
-                  key={card.title}
-                  initial={{ opacity: 0, x: -24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}
-                >
-                  <div className="why-icon" style={{ flexShrink: 0, marginBottom: 0 }}>{card.icon}</div>
-                  <div>
-                    <h3 className="why-title" style={{ color: 'var(--white)' }}>{card.title}</h3>
-                    <p className="why-desc" style={{ color: 'rgba(255,255,255,0.8)' }}>{card.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="why-grid" style={{ gridTemplateColumns: '1fr', display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                {[
+                  {
+                    icon: <Leaf size={24} />, title: 'Fresh Ingredients',
+                    desc: 'Crisp veggies, daily-baked pita, and premium cuts of meat.',
+                  },
+                  {
+                    icon: <UtensilsCrossed size={24} />, title: 'Flame-Grilled',
+                    desc: 'Authentic roasting methods for that unbeatable smoky taste.',
+                  },
+                  {
+                    icon: <Truck size={24} />, title: 'Fast Delivery',
+                    desc: "Hot and fresh to your door, exactly when you crave it.",
+                  },
+                ].map((card, i) => (
+                  <motion.div
+                    key={card.title}
+                    initial={{ opacity: 0, x: -24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    style={{ display: 'flex', gap: '18px', alignItems: 'flex-start' }}
+                  >
+                    <div className="why-icon" style={{ flexShrink: 0, marginBottom: 0 }}>{card.icon}</div>
+                    <div>
+                      <h3 className="why-title" style={{ color: 'var(--white)' }}>{card.title}</h3>
+                      <p className="why-desc" style={{ color: 'rgba(255,255,255,0.8)' }}>{card.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+
+            {/* Right Column Showcase Image Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="why-different-card-showcase"
+            >
+              <ProgressiveImage 
+                src="/images/why_different_flames_new.png" 
+                alt="Photorealistic Flame-Grilled Spit Roast Craft" 
+                style={{ width: '100%', height: '380px' }}
+                objectPosition="center 40%"
+              />
+              <div className="why-different-card-badge">
+                <UtensilsCrossed size={20} color="var(--orange)" />
+                <span>Authentic Flame-Grilled Rotisserie Spit</span>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
