@@ -64,32 +64,34 @@ const FIGURINES = [
 
 const COUNT = FIGURINES.length;
 
-// ─── Grain SVG noise overlay ─────────────────────────────────────
-const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E")`;
-
 const EASE = '650ms cubic-bezier(0.4,0,0.2,1)';
-const ITEM_TRANSITION = `transform ${EASE}, filter ${EASE}, opacity ${EASE}, left ${EASE}, bottom ${EASE}, height ${EASE}`;
 
 // ─── Main Component ──────────────────────────────────────────────
 export default function ShawarmaHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const isAnimatingRef = useRef(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReduced, setPrefersReduced] = useState(false);
   const { addToCart } = useCart();
   const timerRef = useRef(null);
 
-  // Preload only the first figurine on mount to optimize LCP, others naturally load later
+  // Responsive breakpoint via matchMedia (no resize listener needed)
   useEffect(() => {
-    const img = new Image();
-    img.src = FIGURINES[0].src;
+    const mq = window.matchMedia('(max-width: 639px)');
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
-  // Responsive breakpoint
+  // Check prefers-reduced-motion
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 640);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReduced(mq.matches);
+    const handler = (e) => setPrefersReduced(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
   const navigate = useCallback((dir) => {
@@ -105,11 +107,12 @@ export default function ShawarmaHero() {
     }, 650);
   }, []);
 
-  // Auto-rotate every 5 seconds
+  // Auto-rotate every 5 seconds (disabled for reduced motion)
   useEffect(() => {
+    if (prefersReduced) return;
     timerRef.current = setInterval(() => navigate('next'), 5000);
     return () => clearInterval(timerRef.current);
-  }, [navigate]);
+  }, [navigate, prefersReduced]);
 
   const handleNav = useCallback((dir) => {
     clearInterval(timerRef.current);
@@ -155,7 +158,7 @@ export default function ShawarmaHero() {
       zIndex: 20,
       height: isMobile ? '50%' : '92%',
       bottom: isMobile ? '26%' : '0%',
-      transition: { duration: 0.8, type: 'spring', bounce: 0.25 }
+      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.25 }
     },
     left: {
       left: isMobile ? '15%' : '30%',
@@ -166,7 +169,7 @@ export default function ShawarmaHero() {
       zIndex: 10,
       height: isMobile ? '28%' : '28%',
       bottom: isMobile ? '30%' : '12%',
-      transition: { duration: 0.8, type: 'spring', bounce: 0.2 }
+      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.2 }
     },
     right: {
       left: isMobile ? '85%' : '70%',
@@ -177,7 +180,7 @@ export default function ShawarmaHero() {
       zIndex: 10,
       height: isMobile ? '28%' : '28%',
       bottom: isMobile ? '30%' : '12%',
-      transition: { duration: 0.8, type: 'spring', bounce: 0.2 }
+      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.2 }
     },
     back: {
       left: isMobile ? '25%' : '40%',
@@ -188,7 +191,7 @@ export default function ShawarmaHero() {
       zIndex: 5,
       height: isMobile ? '22%' : '22%',
       bottom: isMobile ? '32%' : '12%',
-      transition: { duration: 0.8, type: 'spring', bounce: 0.15 }
+      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.15 }
     },
     farBack: {
       left: isMobile ? '75%' : '60%',
@@ -199,7 +202,7 @@ export default function ShawarmaHero() {
       zIndex: 3,
       height: isMobile ? '18%' : '19%',
       bottom: isMobile ? '34%' : '14%',
-      transition: { duration: 0.8, type: 'spring', bounce: 0.15 }
+      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.15 }
     }
   };
 
@@ -217,13 +220,11 @@ export default function ShawarmaHero() {
         overflow: 'hidden',
       }}
     >
-      {/* ── 1. Grain Overlay ── */}
+      {/* ── 1. Grain Overlay (CSS-only, no SVG filter) ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 50, pointerEvents: 'none',
-        backgroundImage: GRAIN_SVG,
-        backgroundSize: '200px 200px',
-        backgroundRepeat: 'repeat',
-        opacity: 0.4,
+        opacity: 0.04,
+        background: 'repeating-conic-gradient(rgba(255,255,255,0.1) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px',
       }} />
 
       {/* ── 2. Giant Ghost Text (Infinite Marquee) ── */}
@@ -320,7 +321,7 @@ export default function ShawarmaHero() {
       </div>
 
       {/* ── 4. Figurine Carousel ── */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
+      <div role="region" aria-label="Featured shawarma carousel" aria-live="polite" style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
         {FIGURINES.map((fig, idx) => {
           const role = getRole(idx);
           const isActive = role === 'center';
@@ -334,7 +335,6 @@ export default function ShawarmaHero() {
               style={{
                 position: 'absolute',
                 aspectRatio: '0.6 / 1',
-                willChange: 'transform, filter, opacity, left, bottom, height',
               }}
             >
               <motion.div
@@ -342,16 +342,18 @@ export default function ShawarmaHero() {
                 animate={isActive ? "idle" : "static"}
                 variants={{
                   static: { y: 0, scale: 1 },
-                  idle: { 
-                    y: [0, -12, 0], 
-                    scale: [1, 1.015, 1],
-                    transition: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
-                  }
+                  idle: prefersReduced
+                    ? { y: 0, scale: 1 }
+                    : { 
+                        y: [0, -12, 0], 
+                        scale: [1, 1.015, 1],
+                        transition: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+                      }
                 }}
               >
                 <motion.div
                   style={{ width: '100%', height: '100%', originY: 1 }}
-                  whileHover={isActive && !isAnimating ? { y: -15, scale: 1.06, filter: 'drop-shadow(0px 25px 30px rgba(0,0,0,0.4))' } : { filter: 'drop-shadow(0px 0px 0px rgba(0,0,0,0))' }}
+                  whileHover={isActive && !isAnimating && !prefersReduced ? { y: -15, scale: 1.06, filter: 'drop-shadow(0px 25px 30px rgba(0,0,0,0.4))' } : { filter: 'drop-shadow(0px 0px 0px rgba(0,0,0,0))' }}
                   transition={{ type: 'spring', bounce: 0.5, duration: 0.6 }}
                 >
                   <img

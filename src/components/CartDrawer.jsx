@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export default function CartDrawer() {
@@ -13,6 +14,7 @@ export default function CartDrawer() {
     cartTotal,
     generateWhatsAppLink,
   } = useCart();
+  const navigate = useNavigate();
 
   // Prevent background scrolling when cart is open
   useEffect(() => {
@@ -100,7 +102,7 @@ export default function CartDrawer() {
                   <ShoppingBag size={48} opacity={0.2} style={{ margin: '0 auto 16px' }} />
                   <p>Your cart is empty.</p>
                   <button 
-                    onClick={() => setIsCartOpen(false)}
+                    onClick={() => { setIsCartOpen(false); navigate('/menu'); }}
                     style={{ marginTop: 16, color: 'var(--orange)', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem' }}
                   >
                     Browse Menu

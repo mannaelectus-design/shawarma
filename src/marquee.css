@@ -19,6 +19,13 @@
   will-change: transform;
 }
 
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* Each half — flex-shrink:0 guarantees equal width */
 .marquee-half {
   display: flex;

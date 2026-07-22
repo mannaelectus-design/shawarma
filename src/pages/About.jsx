@@ -21,11 +21,29 @@ export default function About() {
           <h1 style={{ fontFamily: "'Anton', sans-serif", fontSize: 'clamp(40px, 6vw, 64px)', color: 'var(--cream)', lineHeight: 1.1, marginBottom: 16 }}>
             OUR <span style={{ color: 'var(--orange)' }}>STORY</span>
           </h1>
-          <p style={{ color: 'var(--cream-dim)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', marginBottom: 48 }}>
+          <p style={{ color: 'var(--cream-dim)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', marginBottom: 40 }}>
             Born from a passion for authentic Middle Eastern flavors and Kenyan hospitality.
           </p>
-          <div style={{ position: 'relative', width: '100%', height: '400px', borderRadius: '16px', overflow: 'hidden', marginBottom: '64px' }}>
-            <ProgressiveImage src="/images/our_story_kitchen.webp" alt="Chef grilling meat" style={{ width: '100%', height: '100%' }} objectPosition="center 70%" />
+          <div className="about-hero-banner">
+            <ProgressiveImage 
+              src="/images/our_story_new.png" 
+              alt="Photorealistic Master Chef Carving Flame Grilled Shawarma Spit" 
+              style={{ width: '100%', height: '100%' }} 
+              objectPosition="center 40%" 
+            />
+            <div className="about-hero-overlay">
+              <div className="about-hero-badges">
+                <span className="about-hero-pill highlight">
+                  <Flame size={16} /> Authentic Rotisserie Spit Roast
+                </span>
+                <span className="about-hero-pill">
+                  <Droplets size={16} color="var(--orange)" /> Overnight Secret Spice Marinade
+                </span>
+                <span className="about-hero-pill">
+                  <CheckCircle size={16} color="var(--orange)" /> 100% Fresh Daily Ingredients
+                </span>
+              </div>
+            </div>
           </div>
         </motion.div>
 

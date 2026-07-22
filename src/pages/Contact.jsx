@@ -32,11 +32,30 @@ export default function Contact() {
           <h1 style={{ fontFamily: "'Anton', sans-serif", fontSize: 'clamp(40px, 6vw, 64px)', color: 'var(--cream)', lineHeight: 1.1, marginBottom: 16 }}>
             GET IN <span style={{ color: 'var(--orange)' }}>TOUCH</span>
           </h1>
-          <p style={{ color: 'var(--cream-dim)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', marginBottom: 48 }}>
+          <p style={{ color: 'var(--cream-dim)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', marginBottom: 40 }}>
             Ready to order? Use WhatsApp for the fastest response, call us, or drop an inquiry below.
           </p>
-          <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '16px', overflow: 'hidden', marginBottom: '64px' }}>
-            <ProgressiveImage src="/images/shawarma_plate.webp" alt="Restaurant spread" style={{ width: '100%', height: '100%' }} />
+
+          <div className="contact-hero-banner">
+            <ProgressiveImage 
+              src="/images/contact_hero_new.png" 
+              alt="Photorealistic Shawarma House Kenya Grill & Storefront Spread" 
+              style={{ width: '100%', height: '100%' }} 
+              objectPosition="center 40%"
+            />
+            <div className="contact-hero-overlay">
+              <div className="contact-hero-badges">
+                <span className="contact-hero-pill highlight">
+                  <MessageCircle size={16} /> Fast WhatsApp Ordering
+                </span>
+                <span className="contact-hero-pill">
+                  <MapPin size={16} color="var(--orange)" /> Kimathi Street, Nairobi CBD
+                </span>
+                <span className="contact-hero-pill">
+                  <Clock size={16} color="var(--orange)" /> Open Daily 10AM - 11:30PM
+                </span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
