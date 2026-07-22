@@ -26,10 +26,11 @@ export default function About() {
           </p>
           <div className="about-hero-banner">
             <ProgressiveImage 
-              src="/images/our_story_new.png" 
+              src="/images/our_story_new.webp"
               alt="Photorealistic Master Chef Carving Flame Grilled Shawarma Spit" 
               style={{ width: '100%', height: '100%' }} 
               objectPosition="center 40%" 
+              priority
             />
             <div className="about-hero-overlay">
               <div className="about-hero-badges">
@@ -50,7 +51,7 @@ export default function About() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, marginBottom: 80 }}>
           
           {/* Brand Story */}
-          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: '2rem', color: 'var(--cream)', marginBottom: 20 }}>BORN IN NAIROBI</h2>
             <p style={{ color: 'var(--cream-dim)', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: 16 }}>
               It started with a simple craving. We wanted shawarma that actually tasted like the ones we grew up with — meat that was marinated overnight, stacked fresh, and slowly flame-grilled to perfection. No dry chicken. No bland sauces.
@@ -62,7 +63,7 @@ export default function About() {
 
           {/* Quality Promises */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ background: 'rgba(255,255,255,0.03)', padding: 24, borderRadius: 16 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ background: 'rgba(255,255,255,0.03)', padding: 24, borderRadius: 16 }}>
               <Flame size={28} color="var(--orange)" style={{ marginBottom: 12 }} />
               <h3 style={{ color: 'var(--cream)', fontSize: '1.2rem', marginBottom: 8 }}>Flame-Grilled Flavor</h3>
               <p style={{ color: 'var(--cream-dim)', fontSize: '0.95rem', lineHeight: 1.5 }}>
@@ -70,7 +71,7 @@ export default function About() {
               </p>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} style={{ background: 'rgba(255,255,255,0.03)', padding: 24, borderRadius: 16 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} style={{ background: 'rgba(255,255,255,0.03)', padding: 24, borderRadius: 16 }}>
               <Droplets size={28} color="var(--orange)" style={{ marginBottom: 12 }} />
               <h3 style={{ color: 'var(--cream)', fontSize: '1.2rem', marginBottom: 8 }}>Hygiene & Freshness</h3>
               <p style={{ color: 'var(--cream-dim)', fontSize: '0.95rem', lineHeight: 1.5 }}>

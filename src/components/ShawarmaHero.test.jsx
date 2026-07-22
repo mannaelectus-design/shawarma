@@ -34,7 +34,7 @@ describe('ShawarmaHero Carousel', () => {
   });
 
   afterEach(() => {
-    vi.runOnlyPendingTimers();
+    vi.clearAllTimers();
     vi.useRealTimers();
   });
 
@@ -51,16 +51,15 @@ describe('ShawarmaHero Carousel', () => {
     expect(screen.getByText('Classic Chicken Shawarma')).toBeInTheDocument();
   });
 
-  it('should auto-rotate to the next item after 5 seconds', () => {
+  it('should stay on the first item without user interaction', () => {
     renderHero();
     expect(screen.getByText('Classic Chicken Shawarma')).toBeInTheDocument();
     
-    // Fast-forward 5000ms
     act(() => {
-      vi.advanceTimersByTime(5000);
+      vi.advanceTimersByTime(10000);
     });
     
-    expect(screen.getByText('Premium Beef Shawarma')).toBeInTheDocument();
+    expect(screen.getByText('Classic Chicken Shawarma')).toBeInTheDocument();
   });
 
   it('should ignore rapid clicks while isAnimating is true', () => {
@@ -101,7 +100,7 @@ describe('ShawarmaHero Carousel', () => {
     expect(screen.getByText('Mixed Shawarma')).toBeInTheDocument();
   });
 
-  it('should clear interval and reset auto-scroll on manual navigation', () => {
+  it('should allow manual navigation after each transition finishes', () => {
     renderHero();
     const nextButton = screen.getByLabelText('Next');
     
@@ -118,18 +117,9 @@ describe('ShawarmaHero Carousel', () => {
     });
     
     act(() => {
-      // Fast forward almost 5000ms, should NOT have auto-navigated yet
-      vi.advanceTimersByTime(4999 - 650);
+      fireEvent.click(nextButton);
     });
-    
-    expect(screen.getByText('Premium Beef Shawarma')).toBeInTheDocument();
-    
-    act(() => {
-      // Fast forward the remaining 1ms
-      vi.advanceTimersByTime(1);
-    });
-    
-    // Now it should auto-navigate to the next one
+
     expect(screen.getByText('Mixed Shawarma')).toBeInTheDocument();
   });
 });

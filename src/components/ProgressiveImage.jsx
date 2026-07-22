@@ -13,6 +13,9 @@ const ProgressiveImage = memo(function ProgressiveImage({
   height,
   priority = false,
   objectPosition = 'center',
+  loading,
+  fetchPriority,
+  decoding = 'async',
   ...rest
 }) {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +58,9 @@ const ProgressiveImage = memo(function ProgressiveImage({
         alt={alt}
         width={width}
         height={height}
+        loading={loading ?? (priority ? 'eager' : 'lazy')}
+        fetchpriority={fetchPriority ?? (priority ? 'high' : 'auto')}
+        decoding={decoding}
         onLoad={() => setLoaded(true)}
         style={{
           position: 'absolute',

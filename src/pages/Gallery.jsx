@@ -70,10 +70,11 @@ export default function Gallery() {
           className="offers-featured-banner"
         >
           <ProgressiveImage 
-            src="/images/gallery_offers_new.png" 
+            src="/images/gallery_offers_new.webp"
             alt="Photorealistic Shawarma Special Offers Feast" 
             style={{ width: '100%', height: '100%' }}
-            objectPosition="center 40%"
+            objectPosition="center 58%"
+            priority
           />
           <div className="offers-featured-overlay">
             <span className="badge-orange">🔥 EXCLUSIVE DEALS</span>

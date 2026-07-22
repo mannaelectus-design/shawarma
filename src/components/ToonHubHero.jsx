@@ -131,7 +131,7 @@ export default function ToonHubHero() {
       style={{
         backgroundColor: active.bg,
         transition: `background-color ${TRANSITION}`,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Outfit'",
         position: 'relative',
         width: '100%',
         height: '100vh',

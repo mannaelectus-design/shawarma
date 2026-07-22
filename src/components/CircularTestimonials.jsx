@@ -154,6 +154,10 @@ export const CircularTestimonials = ({
               alt={testimonial.name}
               className="testimonial-image"
               data-index={index}
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
               style={getImageStyle(index)}
             />
           ))}

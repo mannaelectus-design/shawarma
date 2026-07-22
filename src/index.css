@@ -41,7 +41,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit';
   background: var(--charcoal);
   color: var(--cream);
   overflow-x: hidden;
@@ -95,13 +95,13 @@ select:focus-visible {
 }
 
 /* 4. TYPOGRAPHY */
-.font-display { font-family: 'Reem Kufi', sans-serif; }
+.font-display { font-family: 'Reem Kufi'; }
 
-h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
+h1, h2, h3 { font-family: 'Reem Kufi'; line-height: 1.15; }
 
 .hero-title {
   font-size: clamp(2.8rem, 7vw, 6rem);
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -109,7 +109,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3.2rem);
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-weight: 700;
 }
 
@@ -155,7 +155,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   gap: 8px;
   padding: 14px 28px;
   border-radius: var(--radius-pill);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit';
   font-size: 1rem;
   font-weight: 600;
   transition: var(--transition);
@@ -258,7 +258,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 }
 
 .gallery-card-title {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton';
   font-size: 2.2rem;
   margin-bottom: 4px;
   color: var(--cream);
@@ -347,7 +347,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 .navbar .nav-logo {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Anton';
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--cream);
@@ -491,7 +491,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   gap: 40px;
 }
 .hero-stat .stat-num {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 2rem;
   font-weight: 700;
   color: var(--orange);
@@ -587,7 +587,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   top: 14px; left: 14px;
 }
 .menu-card-name {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1.15rem;
   color: var(--cream);
   margin-bottom: 6px;
@@ -604,7 +604,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   justify-content: space-between;
 }
 .menu-card-price {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--orange);
@@ -726,7 +726,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   margin-bottom: 48px;
 }
 .footer-brand .logo {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--cream);
@@ -740,7 +740,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   margin-bottom: 20px;
 }
 .footer-col h4 {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1rem;
   color: var(--cream);
   margin-bottom: 16px;
@@ -841,7 +841,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   text-align: center;
 }
 .stat-num {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--orange);
@@ -874,7 +874,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 }
 .location-info { padding: 24px; }
 .location-name {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1.3rem;
   color: var(--cream);
   margin-bottom: 8px;
@@ -907,7 +907,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   color: var(--cream);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit';
   font-size: 1rem;
   transition: var(--transition);
   outline: none;
@@ -945,7 +945,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   margin-bottom: 12px;
 }
 .order-option-title {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1.1rem;
   color: var(--cream);
   margin-bottom: 6px;
@@ -982,7 +982,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   margin-bottom: 20px;
 }
 .why-title {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Reem Kufi';
   font-size: 1.2rem;
   color: var(--cream);
   margin-bottom: 10px;
@@ -1200,7 +1200,7 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 }
 .testimonial-name {
   font-weight: bold;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton';
   letter-spacing: 0.05em;
   margin-bottom: 0.25rem;
 }
@@ -1301,10 +1301,10 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 .contact-hero-banner {
   position: relative;
   width: 100%;
-  height: 320px;
-  border-radius: 20px;
+  height: 240px;
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
   background: var(--dark-brown);
@@ -1312,7 +1312,23 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 
 @media (min-width: 768px) {
   .contact-hero-banner {
+    border-radius: 20px;
     height: 400px;
+    margin-bottom: 56px;
+  }
+
+  .contact-hero-overlay {
+    padding: 28px 32px;
+  }
+
+  .contact-hero-badges {
+    gap: 12px;
+  }
+
+  .contact-hero-pill {
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    gap: 8px;
   }
 }
 
@@ -1344,29 +1360,30 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 28px 32px;
+  padding: 14px;
 }
 
 .contact-hero-badges {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .contact-hero-pill {
   background: rgba(20, 12, 9, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--cream);
-  padding: 8px 16px;
+  padding: 6px 10px;
   border-radius: 30px;
-  font-size: 0.88rem;
+  font-size: 0.74rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  max-width: 100%;
 }
 
 .contact-hero-pill.highlight {
@@ -1378,8 +1395,8 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 .offers-featured-banner {
   position: relative;
   width: 100%;
-  height: 260px;
-  border-radius: 20px;
+  height: 280px;
+  border-radius: 14px;
   overflow: hidden;
   margin-bottom: 40px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1389,7 +1406,39 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 
 @media (min-width: 768px) {
   .offers-featured-banner {
+    border-radius: 20px;
     height: 320px;
+  }
+
+  .offers-featured-overlay {
+    left: 28px;
+    right: auto;
+    top: auto;
+    bottom: 24px;
+    max-width: min(430px, calc(100% - 56px));
+    background: rgba(20, 10, 6, 0.52);
+    backdrop-filter: blur(16px) saturate(1.25);
+    -webkit-backdrop-filter: blur(16px) saturate(1.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    justify-content: center;
+    padding: 16px 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 14px 36px rgba(0,0,0,0.35);
+  }
+
+  .offers-featured-overlay h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important;
+  }
+
+  .offers-featured-overlay p {
+    font-size: 0.9rem !important;
+    line-height: 1.45 !important;
+    max-width: 390px !important;
+  }
+
+  .badge-orange {
+    padding: 6px 14px;
+    font-size: 0.8rem;
   }
 }
 
@@ -1409,19 +1458,40 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 
 .offers-featured-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg, 
-    rgba(16, 8, 5, 0.92) 0%, 
-    rgba(16, 8, 5, 0.65) 50%,
-    rgba(16, 8, 5, 0.2) 100%
-  );
+  left: 14px;
+  right: auto;
+  top: 14px;
+  bottom: auto;
+  max-width: min(230px, calc(100% - 28px));
+  background: rgba(20, 10, 6, 0.5);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 32px 40px;
+  justify-content: flex-start;
+  padding: 10px 12px;
   pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 12px 30px rgba(0,0,0,0.32);
+}
+
+.offers-featured-overlay h2 {
+  font-size: 1.18rem !important;
+  margin-bottom: 0 !important;
+}
+
+.offers-featured-overlay p {
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 480px) {
+  .offers-featured-overlay p {
+    display: none;
+  }
 }
 
 .badge-orange {
@@ -1431,9 +1501,9 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   background: rgba(255, 107, 53, 0.2);
   border: 1px solid rgba(255, 107, 53, 0.5);
   color: var(--orange);
-  padding: 6px 14px;
+  padding: 5px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   width: fit-content;
@@ -1443,10 +1513,10 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 .about-hero-banner {
   position: relative;
   width: 100%;
-  height: 320px;
-  border-radius: 20px;
+  height: 240px;
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 64px;
+  margin-bottom: 44px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
   background: var(--dark-brown);
@@ -1454,7 +1524,23 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
 
 @media (min-width: 768px) {
   .about-hero-banner {
+    border-radius: 20px;
     height: 400px;
+    margin-bottom: 64px;
+  }
+
+  .about-hero-overlay {
+    padding: 28px 32px;
+  }
+
+  .about-hero-badges {
+    gap: 12px;
+  }
+
+  .about-hero-pill {
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    gap: 8px;
   }
 }
 
@@ -1486,29 +1572,30 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 28px 32px;
+  padding: 14px;
 }
 
 .about-hero-badges {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .about-hero-pill {
   background: rgba(20, 12, 9, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--cream);
-  padding: 8px 16px;
+  padding: 6px 10px;
   border-radius: 30px;
-  font-size: 0.88rem;
+  font-size: 0.74rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  max-width: 100%;
 }
 
 .about-hero-pill.highlight {
@@ -1555,7 +1642,3 @@ h1, h2, h3 { font-family: 'Reem Kufi', sans-serif; line-height: 1.15; }
   gap: 10px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.6);
 }
-
-
-
-

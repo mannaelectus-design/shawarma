@@ -6,7 +6,7 @@ const bgPresets = [
   { 
     id: 'fries', 
     name: 'Loaded Fries', 
-    path: '/images/poster_bg_fries.png',
+    path: '/images/poster_bg_fries.webp',
     headline: 'LOADED TO PERFECTION',
     subheading: 'Crispy, golden fries smothered in melted cheese and spiced beef.',
     cta: 'SATISFY YOUR CRAVING'
@@ -14,7 +14,7 @@ const bgPresets = [
   { 
     id: 'beef', 
     name: 'Beef Shawarma', 
-    path: '/images/poster_bg_beef_shawarma.png',
+    path: '/images/poster_bg_beef_shawarma.webp',
     headline: 'THE BOLD BITE',
     subheading: 'Premium slow-roasted beef, carved fresh and wrapped warm.',
     cta: 'ORDER YOURS NOW'
@@ -22,7 +22,7 @@ const bgPresets = [
   { 
     id: 'chicken', 
     name: 'Chicken Shawarma', 
-    path: '/images/poster_bg_chicken_shawarma.png',
+    path: '/images/poster_bg_chicken_shawarma.webp',
     headline: 'GARLIC & GOLD',
     subheading: 'Perfectly spiced chicken shawarma with our legendary garlic sauce.',
     cta: 'TASTE THE LEGEND'
@@ -30,7 +30,7 @@ const bgPresets = [
   { 
     id: 'carving', 
     name: 'Sizzling Spit', 
-    path: '/images/poster_bg_meat_slice.png',
+    path: '/images/poster_bg_meat_slice.webp',
     headline: 'FRESH OFF THE SPIT',
     subheading: 'Sizzling, juicy perfection carved right before your eyes.',
     cta: 'EXPERIENCE IT LIVE'
@@ -38,7 +38,7 @@ const bgPresets = [
   { 
     id: 'platter', 
     name: 'Saffron Platter', 
-    path: '/images/poster_bg_platter.png',
+    path: '/images/poster_bg_platter.webp',
     headline: 'THE ROYAL PLATTER',
     subheading: 'A feast of flavors: grilled meats, fresh hummus, and golden saffron rice.',
     cta: 'DINE LIKE A KING'
@@ -46,7 +46,7 @@ const bgPresets = [
   { 
     id: 'spices', 
     name: 'Morning Spices', 
-    path: '/images/poster_bg_spices.png',
+    path: '/images/poster_bg_spices.webp',
     headline: 'THE SECRET BLEND',
     subheading: '14 authentic spices, ground daily. No shortcuts, just pure flavor.',
     cta: 'DISCOVER THE TASTE'
@@ -172,7 +172,7 @@ export default function PosterMaker() {
         ctx.fillText('SHAWARMA HOUSE', logoXPos, logoYPos - 20);
 
         ctx.fillStyle = logoColorSub; // Brand Orange by default
-        ctx.font = '800 31px "Inter", sans-serif';
+        ctx.font = '800 31px "Outfit", sans-serif';
         ctx.fillText('FRESH • HOT • UNSTOPPABLE', logoXPos, logoYPos + 20);
         ctx.restore();
       }
@@ -260,7 +260,7 @@ export default function PosterMaker() {
         </div>
 
         {/* Workspace Layout */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '40px', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))', gap: '40px', alignItems: 'start' }}>
           
           {/* Canvas Preview Column */}
           <div style={{ position: 'sticky', top: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#161616', borderRadius: '16px', padding: '40px', border: '1px solid #333' }}>

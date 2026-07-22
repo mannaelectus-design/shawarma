@@ -38,10 +38,11 @@ export default function Contact() {
 
           <div className="contact-hero-banner">
             <ProgressiveImage 
-              src="/images/contact_hero_new.png" 
+              src="/images/contact_hero_new.webp"
               alt="Photorealistic Shawarma House Kenya Grill & Storefront Spread" 
               style={{ width: '100%', height: '100%' }} 
               objectPosition="center 40%"
+              priority
             />
             <div className="contact-hero-overlay">
               <div className="contact-hero-badges">

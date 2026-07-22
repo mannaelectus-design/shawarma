@@ -102,7 +102,7 @@ export default function Home() {
       <section ref={parallaxRef} className="section" style={{ position: 'relative', overflow: 'hidden' }}>
         <motion.div style={{ position: 'absolute', top: '-20%', bottom: '-20%', left: 0, right: 0, y: backgroundY }}>
           <ProgressiveImage
-            src="/images/why_different_flames_new.png"
+            src="/images/why_different_flames_new.webp"
             alt="Photorealistic chef carving shawarma from vertical spit with flames and embers"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -174,7 +174,7 @@ export default function Home() {
               className="why-different-card-showcase"
             >
               <ProgressiveImage 
-                src="/images/why_different_flames_new.png" 
+                src="/images/why_different_flames_new.webp"
                 alt="Photorealistic Flame-Grilled Spit Roast Craft" 
                 style={{ width: '100%', height: '380px' }}
                 objectPosition="center 40%"
@@ -219,19 +219,19 @@ export default function Home() {
                 quote: "Honestly, this is the best shawarma I've had in Nairobi. The meat is so tender, and that house-made garlic sauce hits the spot perfectly every single time!",
                 name: "Kevin M.",
                 designation: "Local Foodie",
-                src: "/images/testimonials/test_1.png",
+                src: "/images/testimonials/test_1.webp",
               },
               {
                 quote: "The vibe here is just unmatched! My friends and I come here every Friday night. Amazing flame-grilled platters, great music, and the staff always treat us like family.",
                 name: "Amina J.",
                 designation: "Weekend Regular",
-                src: "/images/testimonials/test_2.png",
+                src: "/images/testimonials/test_2.webp",
               },
               {
                 quote: "I've been eating roasted meat for decades, and the nyama choma wrap here is something special. Proper seasoning, hot off the grill, and no shortcuts. Fantastic.",
                 name: "Mzee Omondi",
                 designation: "Neighborhood Legend",
-                src: "/images/testimonials/test_3.png",
+                src: "/images/testimonials/test_3.webp",
               },
             ]}
             autoplay={true}

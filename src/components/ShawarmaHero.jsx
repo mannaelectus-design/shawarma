@@ -65,16 +65,20 @@ const FIGURINES = [
 const COUNT = FIGURINES.length;
 
 const EASE = '650ms cubic-bezier(0.4,0,0.2,1)';
+const FIGURINE_TRANSITION = { duration: 0.65, ease: [0.4, 0, 0.2, 1] };
+const getInitialMediaMatch = (query) =>
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia(query).matches;
 
 // ─── Main Component ──────────────────────────────────────────────
 export default function ShawarmaHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const isAnimatingRef = useRef(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [prefersReduced, setPrefersReduced] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => getInitialMediaMatch('(max-width: 639px)'));
+  const [prefersReduced, setPrefersReduced] = useState(() => getInitialMediaMatch('(prefers-reduced-motion: reduce)'));
   const { addToCart } = useCart();
-  const timerRef = useRef(null);
 
   // Responsive breakpoint via matchMedia (no resize listener needed)
   useEffect(() => {
@@ -107,22 +111,12 @@ export default function ShawarmaHero() {
     }, 650);
   }, []);
 
-  // Auto-rotate every 5 seconds (disabled for reduced motion)
-  useEffect(() => {
-    if (prefersReduced) return;
-    timerRef.current = setInterval(() => navigate('next'), 5000);
-    return () => clearInterval(timerRef.current);
-  }, [navigate, prefersReduced]);
-
   const handleNav = useCallback((dir) => {
-    clearInterval(timerRef.current);
     navigate(dir);
-    timerRef.current = setInterval(() => navigate('next'), 5000);
   }, [navigate]);
 
   const jumpTo = useCallback((i) => {
     if (isAnimatingRef.current || i === activeIndex) return;
-    clearInterval(timerRef.current);
     isAnimatingRef.current = true;
     setIsAnimating(true);
     setActiveIndex(i);
@@ -130,8 +124,7 @@ export default function ShawarmaHero() {
       isAnimatingRef.current = false;
       setIsAnimating(false);
     }, 650);
-    timerRef.current = setInterval(() => navigate('next'), 5000);
-  }, [activeIndex, navigate]);
+  }, [activeIndex]);
 
   // ─── Role calculations for 5 items ────────────────────────────
   const center  = activeIndex;
@@ -158,7 +151,7 @@ export default function ShawarmaHero() {
       zIndex: 20,
       height: isMobile ? '50%' : '92%',
       bottom: isMobile ? '26%' : '0%',
-      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.25 }
+      transition: prefersReduced ? { duration: 0 } : FIGURINE_TRANSITION
     },
     left: {
       left: isMobile ? '15%' : '30%',
@@ -169,7 +162,7 @@ export default function ShawarmaHero() {
       zIndex: 10,
       height: isMobile ? '28%' : '28%',
       bottom: isMobile ? '30%' : '12%',
-      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.2 }
+      transition: prefersReduced ? { duration: 0 } : FIGURINE_TRANSITION
     },
     right: {
       left: isMobile ? '85%' : '70%',
@@ -180,7 +173,7 @@ export default function ShawarmaHero() {
       zIndex: 10,
       height: isMobile ? '28%' : '28%',
       bottom: isMobile ? '30%' : '12%',
-      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.2 }
+      transition: prefersReduced ? { duration: 0 } : FIGURINE_TRANSITION
     },
     back: {
       left: isMobile ? '25%' : '40%',
@@ -191,7 +184,7 @@ export default function ShawarmaHero() {
       zIndex: 5,
       height: isMobile ? '22%' : '22%',
       bottom: isMobile ? '32%' : '12%',
-      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.15 }
+      transition: prefersReduced ? { duration: 0 } : FIGURINE_TRANSITION
     },
     farBack: {
       left: isMobile ? '75%' : '60%',
@@ -202,7 +195,7 @@ export default function ShawarmaHero() {
       zIndex: 3,
       height: isMobile ? '18%' : '19%',
       bottom: isMobile ? '34%' : '14%',
-      transition: prefersReduced ? { duration: 0 } : { duration: 0.8, type: 'spring', bounce: 0.15 }
+      transition: prefersReduced ? { duration: 0 } : FIGURINE_TRANSITION
     }
   };
 
@@ -213,7 +206,7 @@ export default function ShawarmaHero() {
       style={{
         backgroundColor: active.bg,
         transition: `background-color ${EASE}`,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Outfit'",
         position: 'relative',
         width: '100%',
         height: '100vh',
@@ -267,7 +260,7 @@ export default function ShawarmaHero() {
         maxWidth: isMobile ? '100%' : 580,
       }}>
         <h1 style={{
-          fontFamily: "'Anton', sans-serif",
+          fontFamily: "'Anton'",
           fontSize: 'clamp(36px, 8vw, 90px)',
           color: 'white',
           lineHeight: 1.05,
@@ -277,7 +270,7 @@ export default function ShawarmaHero() {
           textShadow: '0 10px 30px rgba(0,0,0,0.5)'
         }}>
           Authentic Arab Shawarma.<br/>
-          <span style={{ color: 'var(--orange)' }}>Delivered Piping Hot.</span>
+          <span style={{ color: '#FFE1CF' }}>Delivered Piping Hot.</span>
         </h1>
       </div>
 
@@ -311,7 +304,7 @@ export default function ShawarmaHero() {
           {active.tag}
         </span>
         <span style={{
-          fontFamily: "'Anton', sans-serif",
+          fontFamily: "'Anton'",
           fontSize: 'clamp(18px, 3.5vw, 36px)',
           color: 'white', opacity: 0.95,
           letterSpacing: '-0.01em',
@@ -360,8 +353,11 @@ export default function ShawarmaHero() {
                     src={fig.src}
                     alt={fig.name}
                     draggable={false}
-                    loading={isActive ? "eager" : "lazy"}
-                    fetchPriority={isActive ? 'high' : 'auto'}
+                    width="1024"
+                    height="1024"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
                     style={{
                       width: '100%', height: '100%',
                       objectFit: 'contain',
@@ -476,7 +472,7 @@ export default function ShawarmaHero() {
           }}
           style={{
             display: 'flex', alignItems: 'center', gap: 12,
-            fontFamily: "'Anton', sans-serif",
+            fontFamily: "'Anton'",
             fontSize: 'clamp(24px, 4vw, 42px)',
             fontWeight: 400,
             background: 'none',

@@ -18,10 +18,13 @@
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; font-size: 16px; }
-      body { font-family: 'Outfit', sans-serif; background: #1A1A1A; color: #F5E6D3; overflow-x: hidden; line-height: 1.6; margin: 0; }
+      body { font-family: 'Outfit'; background: #1A1A1A; color: #F5E6D3; overflow-x: hidden; line-height: 1.6; margin: 0; }
       img { max-width: 100%; display: block; }
       a { text-decoration: none; color: inherit; }
       button { cursor: pointer; border: none; background: none; font-family: inherit; }
+      @font-face { font-family: 'Anton'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/anton-latin.woff2') format('woff2'); }
+      @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('/fonts/outfit-latin.woff2') format('woff2'); }
+      @font-face { font-family: 'Reem Kufi'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('/fonts/reem-kufi-latin.woff2') format('woff2'); }
       .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 72px; display: flex; align-items: center; background: linear-gradient(to bottom, rgba(15,15,15,0.95), rgba(15,15,15,0.8)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
       @keyframes spin { to { transform: rotate(360deg); } }
     </style>
@@ -45,13 +48,15 @@
       "telephone": "+254700000000"
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/anton-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/outfit-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/reem-kufi-latin.woff2" crossorigin />
     <!-- Preload critical above-the-fold images -->
     <link rel="preload" as="image" type="image/webp" href="/images/figurine-1.webp" fetchpriority="high" />
     <link rel="preload" as="image" type="image/webp" href="/images/figurine-3.webp" />
     <link rel="preload" as="image" type="image/webp" href="/images/figurine-2.webp" />
+    <link rel="preload" as="image" type="image/webp" href="/images/figurine-4.webp" />
+    <link rel="preload" as="image" type="image/webp" href="/images/figurine-5.webp" />
   </head>
   <body>
     <div id="root"></div>
